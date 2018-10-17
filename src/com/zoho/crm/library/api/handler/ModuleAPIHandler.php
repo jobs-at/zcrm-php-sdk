@@ -300,7 +300,7 @@ class ModuleAPIHandler extends APIHandler
     {
         $customViewInstance = ZCRMCustomView::getInstance($this->module->getAPIName(), $customViewDetails['id']);
         $customViewInstance->setDisplayValue($customViewDetails['display_value']);
-        $customViewInstance->setDefault((boolean) $customViewDetails['default']);
+        $customViewInstance->setDefault((bool) $customViewDetails['default']);
         $customViewInstance->setName($customViewDetails['name']);
         $customViewInstance->setSystemName($customViewDetails['system_name']);
         $customViewInstance->setSortBy(isset($customViewDetails['sort_by']) ? $customViewDetails['sort_by'] : null);
@@ -410,7 +410,7 @@ class ModuleAPIHandler extends APIHandler
     {
         $fieldInstance = ZCRMField::getInstance($fieldDetails['api_name']);
         $fieldInstance->setSequenceNumber($fieldDetails['sequence_number'] + 0);
-        $fieldInstance->setMandatory((boolean) $fieldDetails['required']);
+        $fieldInstance->setMandatory((bool) $fieldDetails['required']);
         $fieldInstance->setDefaultValue($fieldDetails['default_value']);
         $fieldInstance->setId($fieldDetails['id']);
         $pickListArray = $fieldDetails['pick_list_values'];
@@ -433,13 +433,13 @@ class ModuleAPIHandler extends APIHandler
         $fieldInstance = ZCRMField::getInstance($fieldDetails['api_name']);
         $fieldInstance->setSequenceNumber(isset($fieldDetails['sequence_number']) ? $fieldDetails['sequence_number'] + 0 : 0);
         $fieldInstance->setId($fieldDetails['id']);
-        $fieldInstance->setMandatory(isset($fieldDetails['required']) ? (boolean) $fieldDetails['required'] : false);
+        $fieldInstance->setMandatory(isset($fieldDetails['required']) ? (bool) $fieldDetails['required'] : false);
         $fieldInstance->setDefaultValue(isset($fieldDetails['default_value']) ? $fieldDetails['default_value'] : null);
         if (array_key_exists("custom_field", $fieldDetails)) {
-            $fieldInstance->setCustomField((boolean) $fieldDetails['custom_field']);
+            $fieldInstance->setCustomField((bool) $fieldDetails['custom_field']);
         }
         if (array_key_exists("visible", $fieldDetails)) {
-            $fieldInstance->setVisible((boolean) $fieldDetails['visible']);
+            $fieldInstance->setVisible((bool) $fieldDetails['visible']);
         }
         if (array_key_exists("field_label", $fieldDetails)) {
             $fieldInstance->setFieldLabel($fieldDetails['field_label']);
@@ -451,10 +451,10 @@ class ModuleAPIHandler extends APIHandler
             $fieldInstance->setCreatedSource($fieldDetails['created_source']);
         }
         if (array_key_exists("read_only", $fieldDetails)) {
-            $fieldInstance->setReadOnly((boolean) $fieldDetails['read_only']);
+            $fieldInstance->setReadOnly((bool) $fieldDetails['read_only']);
         }
         if (array_key_exists("businesscard_supported", $fieldDetails)) {
-            $fieldInstance->setBusinessCardSupported((boolean) $fieldDetails['businesscard_supported']);
+            $fieldInstance->setBusinessCardSupported((bool) $fieldDetails['businesscard_supported']);
         }
         if (array_key_exists("data_type", $fieldDetails)) {
             $fieldInstance->setDataType($fieldDetails['data_type']);
@@ -495,7 +495,7 @@ class ModuleAPIHandler extends APIHandler
 
         if (array_key_exists("unique", $fieldDetails) && sizeof($fieldDetails['unique']) > 0) {
             $fieldInstance->setUniqueField(true);
-            $fieldInstance->setCaseSensitive((boolean) ($fieldDetails['unique']['casesensitive']));
+            $fieldInstance->setCaseSensitive((bool) ($fieldDetails['unique']['casesensitive']));
         }
         if (array_key_exists("decimal_place", $fieldDetails) && $fieldDetails['decimal_place'] != null) {
             $fieldInstance->setDecimalPlace($fieldDetails['decimal_place'] + 0);
@@ -574,7 +574,7 @@ class ModuleAPIHandler extends APIHandler
         $layoutInstance->setCreatedTime($layoutDetails['created_time']);
         $layoutInstance->setModifiedTime($layoutDetails['modified_time']);
         $layoutInstance->setName($layoutDetails['name']);
-        $layoutInstance->setVisible((boolean) $layoutDetails['visible']);
+        $layoutInstance->setVisible((bool) $layoutDetails['visible']);
         if ($layoutDetails['created_by'] != null) {
             $userInstance = ZCRMUser::getInstance((($layoutDetails['created_by']['id'])), $layoutDetails['created_by']['name']);
             $layoutInstance->setCreatedBy($userInstance);
@@ -587,7 +587,7 @@ class ModuleAPIHandler extends APIHandler
         $accessibleProfileInstances = [];
         foreach ($accessibleProfileArray as $profile) {
             $profileInstance = ZCRMProfile::getInstance($profile['id'], $profile['name']);
-            $profileInstance->setDefaultProfile((boolean) $profile['default']);
+            $profileInstance->setDefaultProfile((bool) $profile['default']);
             array_push($accessibleProfileInstances, $profileInstance);
         }
         $layoutInstance->setAccessibleProfiles($accessibleProfileInstances);

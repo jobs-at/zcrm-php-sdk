@@ -184,7 +184,7 @@ class ZCRMModuleRelation
      */
     public function getVisible()
     {
-        return (boolean) $this->visible;
+        return (bool) $this->visible;
     }
 
     /**

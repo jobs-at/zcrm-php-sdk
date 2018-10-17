@@ -318,7 +318,7 @@ class ZCRMCustomView
 
     public function setOffLine($off_line)
     {
-        $this->offLine = (boolean) $off_line;
+        $this->offLine = (bool) $off_line;
     }
 
     public function isOffLine()

@@ -275,7 +275,7 @@ class ZCRMInventoryLineItem
      */
     public function getDeleteFlag()
     {
-        return (boolean) $this->deleteFlag;
+        return (bool) $this->deleteFlag;
     }
 
     /**

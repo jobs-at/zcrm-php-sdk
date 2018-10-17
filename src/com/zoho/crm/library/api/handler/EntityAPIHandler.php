@@ -296,7 +296,7 @@ class EntityAPIHandler extends APIHandler
         $participantJSON["type"] = "" . $participantIns->getType();
         $participantJSON["name"] = "" . $participantIns->getName();
         $participantJSON["Email"] = "" . $participantIns->getEmail();
-        $participantJSON["invited"] = (boolean) $participantIns->isInvited();
+        $participantJSON["invited"] = (bool) $participantIns->isInvited();
         $participantJSON["status"] = "" . $participantIns->getStatus();
 
         return $participantJSON;
@@ -425,7 +425,7 @@ class EntityAPIHandler extends APIHandler
         $participant = ZCRMEventParticipant::getInstance($participantDetail['type'], $participantDetail['participant']);
         $participant->setName($participantDetail["name"]);
         $participant->setEmail($participantDetail["Email"]);
-        $participant->setInvited((boolean) $participantDetail["invited"]);
+        $participant->setInvited((bool) $participantDetail["invited"]);
         $participant->setStatus($participantDetail["status"]);
 
         return $participant;

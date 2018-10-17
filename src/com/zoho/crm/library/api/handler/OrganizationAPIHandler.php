@@ -56,7 +56,7 @@ class OrganizationAPIHandler extends APIHandler
         $orgInsatance->setDescription($orgDetails['description']);
         $orgInsatance->setEmployeeCount($orgDetails['employee_count']);
         $orgInsatance->setFax($orgDetails['fax']);
-        $orgInsatance->setGappsEnabled((boolean) $orgDetails['gapps_enabled']);
+        $orgInsatance->setGappsEnabled((bool) $orgDetails['gapps_enabled']);
         $orgInsatance->setIsoCode($orgDetails['iso_code']);
         $orgInsatance->setMcStatus($orgDetails['mc_status']);
         $orgInsatance->setMobile($orgDetails['mobile']);
@@ -73,7 +73,7 @@ class OrganizationAPIHandler extends APIHandler
 
         $license_details = $orgDetails['license_details'];
         if ($license_details != null) {
-            $orgInsatance->setPaidAccount((boolean) $license_details['paid']);
+            $orgInsatance->setPaidAccount((bool) $license_details['paid']);
             $orgInsatance->setPaidType($license_details['paid_type']);
             $orgInsatance->setPaidExpiry($license_details['paid_expiry']);
             $orgInsatance->setTrialExpiry($license_details['trial_expiry']);
@@ -127,7 +127,7 @@ class OrganizationAPIHandler extends APIHandler
     {
         $crmRoleInstance = ZCRMRole::getInstance($roleDetails['id'], $roleDetails['name']);
         $crmRoleInstance->setDisplayLabel($roleDetails['display_label']);
-        $crmRoleInstance->setAdminRole((boolean) $roleDetails['admin_user']);
+        $crmRoleInstance->setAdminRole((bool) $roleDetails['admin_user']);
         if (isset($roleDetails['reporting_to'])) {
             $crmRoleInstance->setReportingTo(ZCRMUser::getInstance($roleDetails['reporting_to']['id'], $roleDetails['reporting_to']['name']));
         }
@@ -222,7 +222,7 @@ class OrganizationAPIHandler extends APIHandler
                 $userInfoJson['locale'] = $user->getLocale();
             }
             if ($user->isPersonalAccount() != null) {
-                $userInfoJson['personal_account'] = (boolean) $user->isPersonalAccount();
+                $userInfoJson['personal_account'] = (bool) $user->isPersonalAccount();
             }
             if ($user->getDefaultTabGroup() != null) {
                 $userInfoJson['default_tab_group'] = $user->getDefaultTabGroup();
@@ -537,16 +537,16 @@ class OrganizationAPIHandler extends APIHandler
             $customizeInfoInstance->setNotesDesc($customizeInfo['notes_desc']);
         }
         if ($customizeInfo['show_right_panel'] != null) {
-            $customizeInfoInstance->setIsToShowRightPanel((boolean) $customizeInfo['show_right_panel']);
+            $customizeInfoInstance->setIsToShowRightPanel((bool) $customizeInfo['show_right_panel']);
         }
         if ($customizeInfo['bc_view'] != null) {
             $customizeInfoInstance->setBcView($customizeInfo['bc_view']);
         }
         if ($customizeInfo['show_home'] != null) {
-            $customizeInfoInstance->setIsToShowHome((boolean) $customizeInfo['show_home']);
+            $customizeInfoInstance->setIsToShowHome((bool) $customizeInfo['show_home']);
         }
         if ($customizeInfo['show_detail_view'] != null) {
-            $customizeInfoInstance->setIsToShowDetailView((boolean) $customizeInfo['show_detail_view']);
+            $customizeInfoInstance->setIsToShowDetailView((bool) $customizeInfo['show_detail_view']);
         }
         if ($customizeInfo['unpin_recent_item'] != null) {
             $customizeInfoInstance->setUnpinRecentItem($customizeInfo['unpin_recent_item']);

@@ -198,7 +198,7 @@ class ZCRMModuleRelatedList
         $this->setName($relatedListDetails['name']);
         $this->setType($relatedListDetails['type']);
         $this->setHref($relatedListDetails['href']);
-        $this->setVisible(isset($relatedListDetails['visible']) ? (boolean) $relatedListDetails['visible'] : false);
+        $this->setVisible(isset($relatedListDetails['visible']) ? (bool) $relatedListDetails['visible'] : false);
 
         return $this;
     }

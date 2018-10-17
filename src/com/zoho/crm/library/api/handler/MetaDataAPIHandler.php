@@ -159,7 +159,7 @@ class MetaDataAPIHandler extends APIHandler
     {
         $customViewInstance = ZCRMCustomView::getInstance($moduleAPIName, $customViewDetails['id']);
         $customViewInstance->setDisplayValue($customViewDetails['display_value']);
-        $customViewInstance->setDefault((boolean) $customViewDetails['default']);
+        $customViewInstance->setDefault((bool) $customViewDetails['default']);
         $customViewInstance->setName($customViewDetails['name']);
         $customViewInstance->setSystemName($customViewDetails['system_name']);
         $customViewInstance->setSortBy(array_key_exists('sort_by', $customViewDetails) ? $customViewDetails['sort_by'] : null);
