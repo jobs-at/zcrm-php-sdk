@@ -397,7 +397,7 @@ class ZCRMModule
     /**
      * Set the module search layout fields
      *
-     * @param Array $searchLayoutFields
+     * @param array $searchLayoutFields
      */
     public function setSearchLayoutFields($searchLayoutFields)
     {

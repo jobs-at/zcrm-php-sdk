@@ -301,7 +301,7 @@ class ZCRMInventoryLineItem
     /**
      * lineTax
      *
-     * @param Array of ZCRMTax $lineTax
+     * @param array of ZCRMTax $lineTax
      */
     public function addLineTax($lineTax)
     {

@@ -228,7 +228,7 @@ class APIRequest
     /**
      * Set the request parameters
      *
-     * @param Array $requestParams
+     * @param array $requestParams
      */
     public function setRequestParams($requestParams)
     {
@@ -248,7 +248,7 @@ class APIRequest
     /**
      * Set the request headers
      *
-     * @param Array $requestHeaders
+     * @param array $requestHeaders
      */
     public function setRequestHeaders($requestHeaders)
     {

@@ -79,7 +79,7 @@ class APIHandler implements APIHandlerInterface
     /**
      * set the request Headers
      *
-     * @param Array $requestHeaders
+     * @param array $requestHeaders
      */
     public function setRequestHeaders($requestHeaders)
     {
@@ -89,7 +89,7 @@ class APIHandler implements APIHandlerInterface
     /**
      * Set the request parameters
      *
-     * @param Array $requestParams
+     * @param array $requestParams
      */
     public function setRequestParams($requestParams)
     {

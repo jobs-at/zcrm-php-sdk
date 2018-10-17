@@ -102,7 +102,7 @@ class FileAPIResponse
     /**
      * responseJSON
      *
-     * @param Array $responseJSON
+     * @param array $responseJSON
      */
     public function setResponseJSON($responseJSON)
     {
@@ -142,7 +142,7 @@ class FileAPIResponse
     /**
      * responseHeaders
      *
-     * @param Array $responseHeaders
+     * @param array $responseHeaders
      */
     public function setResponseHeaders($responseHeaders)
     {
@@ -203,7 +203,7 @@ class FileAPIResponse
     /**
      * details
      *
-     * @param Array $details
+     * @param array $details
      * @return NewFileAPIResponse
      */
     public function setDetails($details)

@@ -183,7 +183,7 @@ class CommonAPIResponse
     /**
      * Set the extra details for response (if any)
      *
-     * @param Array $details
+     * @param array $details
      */
     public function setDetails($details)
     {

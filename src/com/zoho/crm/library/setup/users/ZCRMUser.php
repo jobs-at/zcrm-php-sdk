@@ -885,7 +885,7 @@ class ZCRMUser
     /**
      * territories
      *
-     * @param Array $territories
+     * @param array $territories
      * @return ZCRMUser
      */
     public function setTerritories($territories)

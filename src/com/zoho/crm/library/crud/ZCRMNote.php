@@ -236,7 +236,7 @@ class ZCRMNote
     /**
      * attachments
      *
-     * @param Array of ZCRMAttachment instances $attachments
+     * @param array of ZCRMAttachment instances $attachments
      */
     public function setAttachments($attachments)
     {

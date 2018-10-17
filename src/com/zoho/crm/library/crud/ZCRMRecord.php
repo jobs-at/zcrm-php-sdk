@@ -141,7 +141,7 @@ class ZCRMRecord
     /**
      * lineItems
      *
-     * @param Array $lineItems
+     * @param array $lineItems
      */
     public function addLineItem($lineItem)
     {
@@ -471,7 +471,7 @@ class ZCRMRecord
     /**
      * participants
      *
-     * @param Array $participants
+     * @param array $participants
      */
     public function addParticipant($participant)
     {
@@ -491,7 +491,7 @@ class ZCRMRecord
     /**
      * priceDetails
      *
-     * @param Array $priceDetails
+     * @param array $priceDetails
      */
     public function addPriceDetail($priceDetail)
     {
