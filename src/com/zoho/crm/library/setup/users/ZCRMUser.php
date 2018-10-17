@@ -875,7 +875,7 @@ class ZCRMUser
     /**
      * territories
      *
-     * @return Array
+     * @return array
      */
     public function getTerritories()
     {

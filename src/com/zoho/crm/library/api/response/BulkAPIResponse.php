@@ -118,7 +118,7 @@ class BulkAPIResponse extends CommonAPIResponse
     /**
      * bulkEntitiesResponse
      *
-     * @return Array of EntityResponse
+     * @return array of EntityResponse
      */
     public function getEntityResponses()
     {

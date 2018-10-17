@@ -218,7 +218,7 @@ class APIRequest
     /**
      * Get the request parameters
      *
-     * @return Array
+     * @return array
      */
     public function getRequestParams()
     {
@@ -238,7 +238,7 @@ class APIRequest
     /**
      * Get the request headers
      *
-     * @return Array
+     * @return array
      */
     public function getRequestHeaders()
     {

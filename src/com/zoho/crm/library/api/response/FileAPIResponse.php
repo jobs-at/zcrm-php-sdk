@@ -92,7 +92,7 @@ class FileAPIResponse
     /**
      * responseJSON
      *
-     * @return Array
+     * @return array
      */
     public function getResponseJSON()
     {
@@ -132,7 +132,7 @@ class FileAPIResponse
     /**
      * responseHeaders
      *
-     * @return Array
+     * @return array
      */
     public function getResponseHeaders()
     {
@@ -193,7 +193,7 @@ class FileAPIResponse
     /**
      * details
      *
-     * @return Array
+     * @return array
      */
     public function getDetails()
     {

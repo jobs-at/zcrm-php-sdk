@@ -226,7 +226,7 @@ class ZCRMNote
     /**
      * attachments
      *
-     * @return Array of ZCRMAttachment instance
+     * @return array of ZCRMAttachment instance
      */
     public function getAttachments()
     {

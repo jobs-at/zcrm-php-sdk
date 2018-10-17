@@ -291,7 +291,7 @@ class ZCRMInventoryLineItem
     /**
      * lineTax
      *
-     * @return Array of ZCRMTax
+     * @return array of ZCRMTax
      */
     public function getLineTax()
     {

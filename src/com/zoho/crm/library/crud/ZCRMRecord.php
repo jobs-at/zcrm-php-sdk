@@ -131,7 +131,7 @@ class ZCRMRecord
     /**
      * lineItems
      *
-     * @return Array
+     * @return array
      */
     public function getLineItems()
     {
@@ -461,7 +461,7 @@ class ZCRMRecord
     /**
      * participants
      *
-     * @return Array
+     * @return array
      */
     public function getParticipants()
     {
@@ -481,7 +481,7 @@ class ZCRMRecord
     /**
      * priceDetails
      *
-     * @return Array
+     * @return array
      */
     public function getPriceDetails()
     {

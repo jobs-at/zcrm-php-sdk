@@ -387,7 +387,7 @@ class ZCRMModule
     /**
      * Get the module search layout fields
      *
-     * @return Array
+     * @return array
      */
     public function getSearchLayoutFields()
     {
@@ -584,7 +584,7 @@ class ZCRMModule
     /**
      * Method to get related lists of a module.
      *
-     * @return Array of related list instances
+     * @return array of related list instances
      */
     public function getAllRelatedLists()
     {

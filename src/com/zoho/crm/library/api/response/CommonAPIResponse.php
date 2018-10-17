@@ -173,7 +173,7 @@ class CommonAPIResponse
     /**
      * Get the extra details of response (if any)
      *
-     * @return Array
+     * @return array
      */
     public function getDetails()
     {
