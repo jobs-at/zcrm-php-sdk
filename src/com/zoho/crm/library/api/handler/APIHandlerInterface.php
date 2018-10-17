@@ -17,4 +17,4 @@ interface APIHandlerInterface
     public function getRequestParamsAsMap();
 }
 
-?>
+

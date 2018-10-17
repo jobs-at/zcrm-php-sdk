@@ -511,4 +511,4 @@ class ModuleAPIHandlerTest
     }
 }
 
-?>
+

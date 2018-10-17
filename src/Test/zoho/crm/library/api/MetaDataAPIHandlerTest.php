@@ -240,4 +240,4 @@ class MetaDataAPIHandlerTest
     }
 }
 
-?>
+

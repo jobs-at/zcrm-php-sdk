@@ -687,4 +687,4 @@ class ModuleAPIHandler extends APIHandler
     }
 }
 
-?>
+

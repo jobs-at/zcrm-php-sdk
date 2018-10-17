@@ -155,4 +155,4 @@ class Main
 
 $instance = new Main();
 $instance->startAutomation();
-?>
+

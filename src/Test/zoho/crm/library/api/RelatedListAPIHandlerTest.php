@@ -4,4 +4,4 @@ class RelatedListAPIHandlerTest
 {
 }
 
-?>
+

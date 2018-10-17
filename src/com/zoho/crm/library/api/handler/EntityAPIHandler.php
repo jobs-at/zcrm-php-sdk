@@ -479,4 +479,4 @@ class EntityAPIHandler extends APIHandler
     }
 }
 
-?>
+
