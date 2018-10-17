@@ -2,50 +2,59 @@
 
 class ZCRMProfileSection
 {
-	private $name;
-	private $categories=array();
-	private function __construct($name)
-	{
-		$this->name=$name;
-	}
-	public static function getInstance($name)
-	{
-		return new ZCRMProfileSection($name);
-	}
-	
-	
+    private $name;
+
+    private $categories = [];
+
+    private function __construct($name)
+    {
+        $this->name = $name;
+    }
+
+    public static function getInstance($name)
+    {
+        return new ZCRMProfileSection($name);
+    }
 
     /**
      * name
+     *
      * @return array
      */
-    public function getName(){
+    public function getName()
+    {
         return $this->name;
     }
 
     /**
      * name
+     *
      * @param array $name
      */
-    public function setName($name){
+    public function setName($name)
+    {
         $this->name = $name;
     }
 
     /**
      * categories
+     *
      * @return array of ZCRMProfileCategory instances
      */
-    public function getCategories(){
+    public function getCategories()
+    {
         return $this->categories;
     }
 
     /**
      * categories
+     *
      * @param array $categories
      */
-    public function addCategory($categoryIns){
+    public function addCategory($categoryIns)
+    {
         array_push($this->categories, $categoryIns);
     }
-
 }
+
 ?>

@@ -2,68 +2,82 @@
 
 class ZCRMLeadConvertMapping
 {
-	private $name;
-	private $id;
-	private $fields=array();
-	
-	private function __construct($name,$id)
-	{
-		$this->name=$name;
-		$this->id=$id;
-	}
-	
-	public static function getInstance($name,$id)
-	{
-		return new ZCRMLeadConvertMapping($name,$id);
-	}
-	
+    private $name;
+
+    private $id;
+
+    private $fields = [];
+
+    private function __construct($name, $id)
+    {
+        $this->name = $name;
+        $this->id = $id;
+    }
+
+    public static function getInstance($name, $id)
+    {
+        return new ZCRMLeadConvertMapping($name, $id);
+    }
+
     /**
      * name
+     *
      * @return String
      */
-    public function getName(){
+    public function getName()
+    {
         return $this->name;
     }
 
     /**
      * name
+     *
      * @param String $name
      */
-    public function setName($name){
+    public function setName($name)
+    {
         $this->name = $name;
     }
 
     /**
      * id
+     *
      * @return Long
      */
-    public function getId(){
+    public function getId()
+    {
         return $this->id;
     }
 
     /**
      * id
+     *
      * @param Long $id
      */
-    public function setId($id){
+    public function setId($id)
+    {
         $this->id = $id;
     }
 
     /**
      * fields
+     *
      * @return array of ZCRMLeadConvertMappingField instances
      */
-    public function getFields(){
+    public function getFields()
+    {
         return $this->fields;
     }
 
     /**
      * fields
+     *
      * @param ZCRMLeadConvertMappingField_Instance
      */
-    public function addFields($fieldIns){
-        array_push($this->fields ,$fieldIns);
+    public function addFields($fieldIns)
+    {
+        array_push($this->fields, $fieldIns);
     }
-
 }
+
 ?>
