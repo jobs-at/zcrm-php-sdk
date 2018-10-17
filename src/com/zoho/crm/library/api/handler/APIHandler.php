@@ -56,21 +56,6 @@ class APIHandler implements APIHandlerInterface
         $this->requestHeaders[$key] = $value;
     }
 
-    public function getRequestHeadersAsMap()
-    {
-        return CommonUtil . convertJSONObjectToHashMap($this->requestHeaders);
-    }
-
-    public function getRequestParamsAsMap()
-    {
-        return CommonUtil . convertJSONObjectToHashMap($this->requestParams);
-    }
-
-    public static function getEmptyJSONObject()
-    {
-        return json_decode('{}');
-    }
-
     /**
      *  Set the request method
      *
