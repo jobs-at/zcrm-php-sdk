@@ -11,6 +11,8 @@ interface APIHandlerInterface
     public function getRequestHeaders();
 
     public function getRequestParams();
+
+    public function getApiKey();
 }
 
 

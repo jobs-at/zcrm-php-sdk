@@ -9,59 +9,92 @@ require_once realpath(dirname(__FILE__) . "/../common/APIConstants.php");
  */
 class ZohoHTTPConnector
 {
-    private $url = null;
+    /**
+     * @var string
+     */
+    private $url = '';
 
+    /**
+     * @var array
+     */
     private $requestParams = [];
 
+    /**
+     * @var array
+     */
     private $requestHeaders = [];
 
+    /**
+     * @var int
+     */
     private $requestParamCount = 0;
 
+    /**
+     * @var string|array
+     */
     private $requestBody;
 
+    /**
+     * @var string
+     */
     private $requestType = APIConstants::REQUEST_METHOD_GET;
 
+    /**
+     * @var string
+     */
     private $userAgent = "ZohoCRM PHP SDK";
 
-    private $apiKey = null;
+    /**
+     * @var string
+     */
+    private $apiKey = '';
 
+    /**
+     * @var bool
+     */
     private $isBulkRequest = false;
 
-    private function __construct()
-    {
-
-    }
-
-    public static function getInstance()
+    /**
+     * @return ZohoHTTPConnector
+     */
+    public static function getInstance(): ZohoHTTPConnector
     {
         return new ZohoHTTPConnector();
     }
 
-    public function fireRequest()
+    /**
+     * @return array
+     */
+    public function fireRequest(): array
     {
         $curl_pointer = curl_init();
-        if (count(self::getRequestParamsMap()) > 0) {
-            $url = self::getUrl() . "?" . self::getUrlParamsAsString(self::getRequestParamsMap());
+
+        if (count($this->getRequestParamsMap()) > 0) {
+            $url = $this->getUrl() . "?" . $this->getUrlParamsAsString($this->getRequestParamsMap());
             curl_setopt($curl_pointer, CURLOPT_URL, $url);
         } else {
-            curl_setopt($curl_pointer, CURLOPT_URL, self::getUrl());
+            curl_setopt($curl_pointer, CURLOPT_URL, $this->getUrl());
         }
+
         curl_setopt($curl_pointer, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($curl_pointer, CURLOPT_HEADER, 1);
         curl_setopt($curl_pointer, CURLOPT_USERAGENT, $this->userAgent);
-        curl_setopt($curl_pointer, CURLOPT_HTTPHEADER, self::getRequestHeadersAsArray());
+        curl_setopt($curl_pointer, CURLOPT_HTTPHEADER, $this->getRequestHeadersAsArray());
         curl_setopt($curl_pointer, CURLOPT_CUSTOMREQUEST, APIConstants::REQUEST_METHOD_GET);
 
         if ($this->requestType === APIConstants::REQUEST_METHOD_POST) {
             curl_setopt($curl_pointer, CURLOPT_CUSTOMREQUEST, APIConstants::REQUEST_METHOD_POST);
             curl_setopt($curl_pointer, CURLOPT_POST, true);
-            curl_setopt($curl_pointer, CURLOPT_POSTFIELDS, $this->isBulkRequest ? json_encode(self::getRequestBody()) : self::getRequestBody());
+            $requestBody = $this->isBulkRequest ? json_encode($this->getRequestBody()) : $this->getRequestBody();
+            curl_setopt($curl_pointer, CURLOPT_POSTFIELDS, $requestBody);
         } elseif ($this->requestType === APIConstants::REQUEST_METHOD_PUT) {
             curl_setopt($curl_pointer, CURLOPT_CUSTOMREQUEST, APIConstants::REQUEST_METHOD_PUT);
-            curl_setopt($curl_pointer, CURLOPT_POSTFIELDS, $this->isBulkRequest ? json_encode(self::getRequestBody()) : self::getRequestBody());
+            $requestBody = $this->isBulkRequest ? json_encode($this->getRequestBody()) : $this->getRequestBody();
+            curl_setopt($curl_pointer, CURLOPT_POSTFIELDS, $requestBody);
         } elseif ($this->requestType === APIConstants::REQUEST_METHOD_DELETE) {
             curl_setopt($curl_pointer, CURLOPT_CUSTOMREQUEST, APIConstants::REQUEST_METHOD_DELETE);
         }
+
         $result = curl_exec($curl_pointer);
         $responseInfo = curl_getinfo($curl_pointer);
         curl_close($curl_pointer);
@@ -69,15 +102,17 @@ class ZohoHTTPConnector
         return [$result, $responseInfo];
     }
 
-    public function downloadFile()
+    /**
+     * @return array
+     */
+    public function downloadFile(): array
     {
         $curl_pointer = curl_init();
-        curl_setopt($curl_pointer, CURLOPT_URL, self::getUrl());
+        curl_setopt($curl_pointer, CURLOPT_URL, $this->getUrl());
         curl_setopt($curl_pointer, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($curl_pointer, CURLOPT_HEADER, 1);
         curl_setopt($curl_pointer, CURLOPT_USERAGENT, $this->userAgent);
-        curl_setopt($curl_pointer, CURLOPT_HTTPHEADER, self::getRequestHeadersAsArray());
-        //curl_setopt($curl_pointer,CURLOPT_SSLVERSION,3);
+        curl_setopt($curl_pointer, CURLOPT_HTTPHEADER, $this->getRequestHeadersAsArray());
         $result = curl_exec($curl_pointer);
         $responseInfo = curl_getinfo($curl_pointer);
         curl_close($curl_pointer);
@@ -85,16 +120,26 @@ class ZohoHTTPConnector
         return [$result, $responseInfo];
     }
 
-    public function getUrl()
+    /**
+     * @return string
+     */
+    public function getUrl(): string
     {
         return $this->url;
     }
 
-    public function setUrl($url)
+    /**
+     * @param string $url
+     */
+    public function setUrl(string $url)
     {
         $this->url = $url;
     }
 
+    /**
+     * @param $key
+     * @param $value
+     */
     public function addParam($key, $value)
     {
         if ($this->requestParams[$key] == null) {
@@ -106,6 +151,10 @@ class ZohoHTTPConnector
         }
     }
 
+    /**
+     * @param $key
+     * @param $value
+     */
     public function addHeader($key, $value)
     {
         if ($this->requestHeaders[$key] == null) {
@@ -117,65 +166,99 @@ class ZohoHTTPConnector
         }
     }
 
+    /**
+     * @param $urlParams
+     * @return string
+     */
     public function getUrlParamsAsString($urlParams)
     {
         $params_as_string = "";
+
         foreach ($urlParams as $key => $valueArray) {
             foreach ($valueArray as $value) {
                 $params_as_string = $params_as_string . $key . "=" . urlencode($value) . "&";
                 $this->requestParamCount++;
             }
         }
+
         $params_as_string = rtrim($params_as_string, "&");
         $params_as_string = str_replace(PHP_EOL, '', $params_as_string);
 
         return $params_as_string;
     }
 
-    public function setRequestHeadersMap($headers)
+    /**
+     * @param array $headers
+     */
+    public function setRequestHeadersMap(array $headers)
     {
         $this->requestHeaders = $headers;
     }
 
-    public function getRequestHeadersMap()
+    /**
+     * @return array
+     */
+    public function getRequestHeadersMap(): array
     {
         return $this->requestHeaders;
     }
 
-    public function setRequestParamsMap($params)
+    /**
+     * @param array $params
+     */
+    public function setRequestParamsMap(array $params)
     {
         $this->requestParams = $params;
     }
 
-    public function getRequestParamsMap()
+    /**
+     * @return array
+     */
+    public function getRequestParamsMap(): array
     {
         return $this->requestParams;
     }
 
-    public function setRequestBody($reqBody)
+    /**
+     * @param string|array $requestBody
+     */
+    public function setRequestBody($requestBody)
     {
-        $this->requestBody = $reqBody;
+        $this->requestBody = $requestBody;
     }
 
+    /**
+     * @return array|string
+     */
     public function getRequestBody()
     {
         return $this->requestBody;
     }
 
-    public function setRequestType($reqType)
+    /**
+     * @param string $requestType
+     */
+    public function setRequestType(string $requestType)
     {
-        $this->requestType = $reqType;
+        $this->requestType = $requestType;
     }
 
-    public function getRequestType()
+    /**
+     * @return string
+     */
+    public function getRequestType(): string
     {
         return $this->requestType;
     }
 
-    public function getRequestHeadersAsArray()
+    /**
+     * @return array
+     */
+    public function getRequestHeadersAsArray(): array
     {
         $headersArray = [];
-        $headersMap = self::getRequestHeadersMap();
+        $headersMap = $this->getRequestHeadersMap();
+
         foreach ($headersMap as $key => $value) {
             $headersArray[] = $key . ":" . $value;
         }
@@ -186,9 +269,9 @@ class ZohoHTTPConnector
     /**
      * Get the API Key used in the input json data(like 'modules', 'data','layouts',..etc)
      *
-     * @return String
+     * @return string
      */
-    public function getApiKey()
+    public function getApiKey(): string
     {
         return $this->apiKey;
     }
@@ -196,9 +279,9 @@ class ZohoHTTPConnector
     /**
      * Set the API Key used in the input json data(like 'modules', 'data','layouts',..etc)
      *
-     * @param String $apiKey
+     * @param string $apiKey
      */
-    public function setApiKey($apiKey)
+    public function setApiKey(string $apiKey)
     {
         $this->apiKey = $apiKey;
     }
@@ -206,7 +289,7 @@ class ZohoHTTPConnector
     /**
      * isBulkRequest
      *
-     * @return unkown
+     * @return bool
      */
     public function isBulkRequest()
     {
@@ -216,7 +299,7 @@ class ZohoHTTPConnector
     /**
      * isBulkRequest
      *
-     * @param unkown $isBulkRequest
+     * @param bool $isBulkRequest
      */
     public function setBulkRequest($isBulkRequest)
     {

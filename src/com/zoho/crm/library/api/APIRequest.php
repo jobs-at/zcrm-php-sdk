@@ -12,12 +12,22 @@ require_once realpath(dirname(__FILE__) . "/response/FileAPIResponse.php");
  *
  * @author sumanth-3058
  */
+
 class APIRequest
 {
+    /**
+     * @var null|string
+     */
     private $url = null;
 
+    /**
+     * @var array
+     */
     private $requestParams = [];
 
+    /**
+     * @var array
+     */
     private $requestHeaders = [];
 
     private $requestBody;
@@ -28,15 +38,20 @@ class APIRequest
 
     private $response = null;
 
-    private $reponseInfo = null;
+    private $responseInfo = null;
 
-    private function __construct($apiHandler)
+    /**
+     * @param $apiHandler
+     */
+    private function __construct(APIHandlerInterface $apiHandler)
     {
         self::constructAPIUrl();
         self::setUrl($this->url . $apiHandler->getUrlPath());
+
         if (substr($apiHandler->getUrlPath(), 0, 4) !== "http") {
             self::setUrl("https://" . $this->url);
         }
+
         self::setRequestParams($apiHandler->getRequestParams());
         self::setRequestHeaders($apiHandler->getRequestHeaders());
         self::setRequestBody($apiHandler->getRequestBody());
@@ -44,11 +59,13 @@ class APIRequest
         self::setApiKey($apiHandler->getApiKey());
     }
 
-    public static function getInstance($apiHandler)
+    /**
+     * @param $apiHandler
+     * @return APIRequest
+     */
+    public static function getInstance(APIHandlerInterface $apiHandler): APIRequest
     {
-        $instance = new APIRequest($apiHandler);
-
-        return $instance;
+        return new APIRequest($apiHandler);
     }
 
     /**
@@ -57,142 +74,143 @@ class APIRequest
     public function constructAPIUrl()
     {
         $hitSandbox = ZCRMConfigUtil::getConfigValue('sandbox');
-        $baseUrl = strcasecmp($hitSandbox, "true") == 0 ? str_replace('www', 'sandbox', ZCRMConfigUtil::getAPIBaseUrl()) : ZCRMConfigUtil::getAPIBaseUrl();
+
+        if (strcasecmp($hitSandbox, "true") == 0) {
+            $baseUrl = str_replace('www', 'sandbox', ZCRMConfigUtil::getAPIBaseUrl());
+        } else {
+            $baseUrl = ZCRMConfigUtil::getAPIBaseUrl();
+        }
+
         $this->url = $baseUrl . "/crm/" . ZCRMConfigUtil::getAPIVersion() . "/";
         $this->url = str_replace(PHP_EOL, '', $this->url);
     }
 
+    /**
+     * @throws ZCRMException
+     * @throws ZohoOAuthException
+     */
     private function authenticateRequest()
     {
-        try {
-            $accessToken = (new ZCRMConfigUtil())->getAccessToken();
-            $this->requestHeaders[APIConstants::AUTHORIZATION] = APIConstants::OAUTH_HEADER_PREFIX . $accessToken;
-        } catch (ZCRMException $ex) {
-            throw $ex;
-        }
+        $accessToken = ZCRMConfigUtil::getAccessToken();
+        $this->requestHeaders[APIConstants::AUTHORIZATION] = APIConstants::OAUTH_HEADER_PREFIX . $accessToken;
     }
 
     /**
-     * initiate the request and get the API response
-     *
-     * @return Instance of APIResponse
+     * @return APIResponse
+     * @throws ZCRMException
+     * @throws ZohoOAuthException
      */
-    public function getAPIResponse()
+    public function getAPIResponse(): APIResponse
     {
-        try {
-            $connector = ZohoHTTPConnector::getInstance();
-            $connector->setUrl($this->url);
-            self::authenticateRequest();
-            $connector->setRequestHeadersMap($this->requestHeaders);
-            $connector->setRequestParamsMap($this->requestParams);
-            $connector->setRequestBody($this->requestBody);
-            $connector->setRequestType($this->requestMethod);
-            $connector->setApiKey($this->apiKey);
-            $response = $connector->fireRequest();
-            $this->response = $response[0];
-            $this->responseInfo = $response[1];
+        $connector = ZohoHTTPConnector::getInstance();
+        $connector->setUrl($this->url);
+        self::authenticateRequest();
+        $connector->setRequestHeadersMap($this->requestHeaders);
+        $connector->setRequestParamsMap($this->requestParams);
+        $connector->setRequestBody($this->requestBody);
+        $connector->setRequestType($this->requestMethod);
+        $connector->setApiKey($this->apiKey);
+        $response = $connector->fireRequest();
+        $this->response = $response[0];
+        $this->responseInfo = $response[1];
 
-            return new APIResponse($this->response, $this->responseInfo['http_code']);
-        } catch (ZCRMException $e) {
-            throw $e;
-        }
+        return new APIResponse($this->response, $this->responseInfo['http_code']);
     }
 
     /**
-     * initiate the request and get the API response
-     *
-     * @return instance of BulkAPIResponse
+     * @return BulkAPIResponse
+     * @throws ZCRMException
+     * @throws ZohoOAuthException
      */
-    public function getBulkAPIResponse()
+    public function getBulkAPIResponse(): BulkAPIResponse
     {
-        try {
-            $connector = ZohoHTTPConnector::getInstance();
-            $connector->setUrl($this->url);
-            self::authenticateRequest();
-            $connector->setRequestHeadersMap($this->requestHeaders);
-            $connector->setRequestParamsMap($this->requestParams);
-            $connector->setRequestBody($this->requestBody);
-            $connector->setRequestType($this->requestMethod);
-            $connector->setApiKey($this->apiKey);
-            $connector->setBulkRequest(true);
-            $response = $connector->fireRequest();
-            $this->response = $response[0];
-            $this->responseInfo = $response[1];
+        $connector = ZohoHTTPConnector::getInstance();
+        $connector->setUrl($this->url);
+        self::authenticateRequest();
+        $connector->setRequestHeadersMap($this->requestHeaders);
+        $connector->setRequestParamsMap($this->requestParams);
+        $connector->setRequestBody($this->requestBody);
+        $connector->setRequestType($this->requestMethod);
+        $connector->setApiKey($this->apiKey);
+        $connector->setBulkRequest(true);
+        $response = $connector->fireRequest();
+        $this->response = $response[0];
+        $this->responseInfo = $response[1];
 
-            return new BulkAPIResponse($this->response, $this->responseInfo['http_code']);
-        } catch (ZCRMException $e) {
-            throw $e;
-        }
+        return new BulkAPIResponse($this->response, $this->responseInfo['http_code']);
     }
 
-    public function uploadFile($filePath)
+    /**
+     * @param $filePath
+     * @return APIResponse
+     * @throws ZCRMException
+     * @throws ZohoOAuthException
+     */
+    public function uploadFile($filePath): APIResponse
     {
-        try {
-            $fileContent = file_get_contents($filePath);
-            $filePathArray = explode('/', $filePath);
-            $fileName = $filePathArray[sizeof($filePathArray) - 1];
-            if (function_exists('curl_file_create')) { // php 5.6+
-                $cFile = curl_file_create($filePath);
-            } else { //
-                $cFile = '@' . realpath($filePath);
-            }
-            $post = ['file' => $cFile];
-
-            $connector = ZohoHTTPConnector::getInstance();
-            $connector->setUrl($this->url);
-            self::authenticateRequest();
-            $connector->setRequestHeadersMap($this->requestHeaders);
-            $connector->setRequestParamsMap($this->requestParams);
-            $connector->setRequestBody($post);
-            $connector->setRequestType($this->requestMethod);
-            $connector->setApiKey($this->apiKey);
-            $response = $connector->fireRequest();
-            $this->response = $response[0];
-            $this->responseInfo = $response[1];
-
-            return new APIResponse($this->response, $this->responseInfo['http_code']);
-        } catch (ZCRMException $e) {
-            throw $e;
+        if (function_exists('curl_file_create')) { // php 5.6+
+            $cFile = curl_file_create($filePath);
+        } else { //
+            $cFile = '@' . realpath($filePath);
         }
+
+        $post = ['file' => $cFile];
+
+        $connector = ZohoHTTPConnector::getInstance();
+        $connector->setUrl($this->url);
+        self::authenticateRequest();
+        $connector->setRequestHeadersMap($this->requestHeaders);
+        $connector->setRequestParamsMap($this->requestParams);
+        $connector->setRequestBody($post);
+        $connector->setRequestType($this->requestMethod);
+        $connector->setApiKey($this->apiKey);
+        $response = $connector->fireRequest();
+        $this->response = $response[0];
+        $this->responseInfo = $response[1];
+
+        return new APIResponse($this->response, $this->responseInfo['http_code']);
     }
 
-    public function uploadLinkAsAttachment($linkURL)
+    /**
+     * @param $linkURL
+     * @return APIResponse
+     * @throws ZCRMException
+     * @throws ZohoOAuthException
+     */
+    public function uploadLinkAsAttachment($linkURL): APIResponse
     {
-        try {
-            $post = ['attachmentUrl' => $linkURL];
+        $post = ['attachmentUrl' => $linkURL];
 
-            $connector = ZohoHTTPConnector::getInstance();
-            $connector->setUrl($this->url);
-            self::authenticateRequest();
-            $connector->setRequestHeadersMap($this->requestHeaders);
-            $connector->setRequestBody($post);
-            $connector->setRequestType($this->requestMethod);
-            $connector->setApiKey($this->apiKey);
-            $response = $connector->fireRequest();
-            $this->response = $response[0];
-            $this->responseInfo = $response[1];
+        $connector = ZohoHTTPConnector::getInstance();
+        $connector->setUrl($this->url);
+        self::authenticateRequest();
+        $connector->setRequestHeadersMap($this->requestHeaders);
+        $connector->setRequestBody($post);
+        $connector->setRequestType($this->requestMethod);
+        $connector->setApiKey($this->apiKey);
+        $response = $connector->fireRequest();
+        $this->response = $response[0];
+        $this->responseInfo = $response[1];
 
-            return new APIResponse($this->response, $this->responseInfo['http_code']);
-        } catch (ZCRMException $e) {
-            throw $e;
-        }
+        return new APIResponse($this->response, $this->responseInfo['http_code']);
     }
 
-    public function downloadFile()
+    /**
+     * @return FileAPIResponse
+     * @throws ZCRMException
+     * @throws ZohoOAuthException
+     */
+    public function downloadFile(): FileAPIResponse
     {
-        try {
-            $connector = ZohoHTTPConnector::getInstance();
-            $connector->setUrl($this->url);
-            self::authenticateRequest();
-            $connector->setRequestHeadersMap($this->requestHeaders);
-            $connector->setRequestParamsMap($this->requestParams);
-            $connector->setRequestType($this->requestMethod);
-            $response = $connector->downloadFile();
+        $connector = ZohoHTTPConnector::getInstance();
+        $connector->setUrl($this->url);
+        self::authenticateRequest();
+        $connector->setRequestHeadersMap($this->requestHeaders);
+        $connector->setRequestParamsMap($this->requestParams);
+        $connector->setRequestType($this->requestMethod);
+        $response = $connector->downloadFile();
 
-            return (new FileAPIResponse())->setFileContent($response[0], $response[1]['http_code']);
-        } catch (ZCRMException $e) {
-            throw $e;
-        }
+        return (new FileAPIResponse())->setFileContent($response[0], $response[1]['http_code']);
     }
 
     /**
