@@ -11,6 +11,9 @@ class Logger
             $path = $path . "/";
         }
         $path = str_replace("\n", "", $path);
+        if (!file_exists($path)) {
+            mkdir($path);
+        }
         $filePointer = fopen($path . "ZCRMClientLibrary.log", "a");
         if (!$filePointer) {
             return;
