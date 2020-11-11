@@ -1,75 +1,63 @@
 <?php
-require_once realpath(dirname(__FILE__)."/../../common/APIConstants.php");
-require_once 'ResponseInfo.php';
-require_once 'EntityResponse.php';
-require_once 'CommonAPIResponse.php';
-require_once realpath(dirname(__FILE__)."/../../exception/ZCRMException.php");
+
+namespace Jobs\ZohoSDK\com\zoho\crm\library\api\response;
+
+use Jobs\ZohoSDK\com\zoho\crm\library\common\APIConstants;
+use Jobs\ZohoSDK\com\zoho\crm\library\exception\APIExceptionHandler;
+use Jobs\ZohoSDK\com\zoho\crm\library\exception\ZCRMException;
 
 class BulkAPIResponse extends CommonAPIResponse
 {
-	private $bulkData=null;
-	private $status=null;
-	private $info=null;
-	private $bulkEntitiesResponse=null;
-	
-	public function __construct($httpResponse,$httpStatusCode)
-	{
-		parent::__construct($httpResponse,$httpStatusCode);
-		$this->setInfo();
-	}
-	
-	
-	public function handleForFaultyResponses()
-	{
-		$statusCode=self::getHttpStatusCode();
-		if(in_array($statusCode,APIExceptionHandler::getFaultyResponseCodes()))
-		{
-			if($statusCode==APIConstants::RESPONSECODE_NO_CONTENT)
-			{
-				$exception=new ZCRMException("No Content",$statusCode);
-				$exception->setExceptionCode("NO CONTENT");
-				throw $exception;
-			}
-			else
-			{
-				$responseJSON=$this->getResponseJSON();
-				$exception=new ZCRMException($responseJSON['message'],$statusCode);
-				$exception->setExceptionCode($responseJSON['code']);
-				$exception->setExceptionDetails($responseJSON['details']);
-				throw $exception;
-			}
-		}
-	}
-	public function processResponseData()
-	{
-		$this->bulkEntitiesResponse =array();
-		$bulkResponseJSON=$this->getResponseJSON();
-		if(array_key_exists(APIConstants::DATA,$bulkResponseJSON))
-		{
-			$recordsArray = $bulkResponseJSON[APIConstants::DATA];
-			foreach ($recordsArray as $record)
-			{
-				if($record!=null && array_key_exists(APIConstants::STATUS,$record))
-				{
-					array_push($this->bulkEntitiesResponse,new EntityResponse($record));
-				}
-			}
-		}
-	}
+    private $bulkData=null;
+    private $status=null;
+    private $info=null;
+    private $bulkEntitiesResponse=null;
+    
+    public function __construct($httpResponse, $httpStatusCode)
+    {
+        parent::__construct($httpResponse, $httpStatusCode);
+        $this->setInfo();
+    }
+    
+    
+    public function handleForFaultyResponses()
+    {
+        $statusCode=self::getHttpStatusCode();
+        if (in_array($statusCode, APIExceptionHandler::getFaultyResponseCodes())) {
+            if ($statusCode==APIConstants::RESPONSECODE_NO_CONTENT) {
+                $exception=new ZCRMException('No Content', $statusCode);
+                $exception->setExceptionCode('NO CONTENT');
+                throw $exception;
+            } else {
+                $responseJSON=$this->getResponseJSON();
+                $exception=new ZCRMException($responseJSON['message'], $statusCode);
+                $exception->setExceptionCode($responseJSON['code']);
+                $exception->setExceptionDetails($responseJSON['details']);
+                throw $exception;
+            }
+        }
+    }
+    public function processResponseData()
+    {
+        $this->bulkEntitiesResponse =[];
+        $bulkResponseJSON=$this->getResponseJSON();
+        if (array_key_exists(APIConstants::DATA, $bulkResponseJSON)) {
+            $recordsArray = $bulkResponseJSON[APIConstants::DATA];
+            foreach ($recordsArray as $record) {
+                if ($record!=null && array_key_exists(APIConstants::STATUS, $record)) {
+                    array_push($this->bulkEntitiesResponse, new EntityResponse($record));
+                }
+            }
+        }
+    }
 
-    /**
-     * bulkData
-     * @return unkown
-     */
-    public function getData(){
+    public function getData()
+    {
         return $this->bulkData;
     }
 
-    /**
-     * bulkData
-     * @param unkown $bulkData
-     */
-    public function setData($bulkData){
+    public function setData($bulkData)
+    {
         $this->bulkData = $bulkData;
     }
 
@@ -77,7 +65,8 @@ class BulkAPIResponse extends CommonAPIResponse
      * status
      * @return String
      */
-    public function getStatus(){
+    public function getStatus()
+    {
         return $this->status;
     }
 
@@ -85,37 +74,36 @@ class BulkAPIResponse extends CommonAPIResponse
      * status
      * @param String $status
      */
-    public function setStatus($status){
+    public function setStatus($status)
+    {
         $this->status = $status;
     }
 
     /**
      * info
-     * @return Instance of ResponseInfo
+     * @return ResponseInfo
      */
-    public function getInfo(){
+    public function getInfo()
+    {
         return $this->info;
     }
 
     /**
      * info
-     * @param Instance of ResponseInfo $info
      */
-    public function setInfo(){
-    	if(array_key_exists(APIConstants::INFO,$this->getResponseJSON()))
-    	{
-    		$this->info = new ResponseInfo($this->getResponseJSON()[APIConstants::INFO]);
-    	}
+    public function setInfo()
+    {
+        if (array_key_exists(APIConstants::INFO, $this->getResponseJSON())) {
+            $this->info = new ResponseInfo($this->getResponseJSON()[APIConstants::INFO]);
+        }
     }
 
     /**
      * bulkEntitiesResponse
-     * @return Array of EntityResponse
+     * @return EntityResponse[]
      */
-    public function getEntityResponses(){
+    public function getEntityResponses()
+    {
         return $this->bulkEntitiesResponse;
     }
-
-
 }
-?>

@@ -1,30 +1,33 @@
 <?php
+
+namespace Jobs\ZohoSDK\com\zoho\crm\library\crud;
+
 /**
- * 
+ *
  * @author sumanth-3058
  *
  */
 class ZCRMCustomViewCriteria
 {
-	private $comparator=null;
-	private $field=null;
-	private $value=null;
-	
-	private function __construct()
-	{
-		
-	}
-	
-	public static function getInstance()
-	{
-		return new ZCRMCustomViewCriteria();
-	}
+    private $comparator=null;
+    private $field=null;
+    private $value=null;
+    
+    private function __construct()
+    {
+    }
+    
+    public static function getInstance()
+    {
+        return new ZCRMCustomViewCriteria();
+    }
 
     /**
      * Get the custom view criteria comparator
      * @return Comparator
      */
-    public function getComparator(){
+    public function getComparator()
+    {
         return $this->comparator;
     }
 
@@ -32,7 +35,8 @@ class ZCRMCustomViewCriteria
      * Set the custom view criteria comparator
      * @param $comparator
      */
-    public function setComparator($comparator){
+    public function setComparator($comparator)
+    {
         $this->comparator = $comparator;
     }
 
@@ -40,7 +44,8 @@ class ZCRMCustomViewCriteria
      * Get the custom view criteria field name
      * @return fieldName
      */
-    public function getField(){
+    public function getField()
+    {
         return $this->field;
     }
 
@@ -48,7 +53,8 @@ class ZCRMCustomViewCriteria
      * Set the custom view criteria field name
      * @param $field
      */
-    public function setField($field){
+    public function setField($field)
+    {
         $this->field = $field;
     }
 
@@ -56,7 +62,8 @@ class ZCRMCustomViewCriteria
      * Get the custom view criteria field value
      * @return CriteriaFieldValue
      */
-    public function getValue(){
+    public function getValue()
+    {
         return $this->value;
     }
 
@@ -64,9 +71,8 @@ class ZCRMCustomViewCriteria
      * Set the custom view criteria field value
      * @param $value
      */
-    public function setValue($value){
+    public function setValue($value)
+    {
         $this->value = $value;
     }
-
 }
-?>

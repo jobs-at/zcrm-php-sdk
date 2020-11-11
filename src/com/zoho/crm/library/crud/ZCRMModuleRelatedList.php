@@ -1,36 +1,39 @@
 <?php
 
+namespace Jobs\ZohoSDK\com\zoho\crm\library\crud;
+
 class ZCRMModuleRelatedList
 {
-	private $apiName=null;
-	private $module=null;
-	private $displayLabel=null;
-	private $visible=null;
-	private $name=null;
-	private $id=null;
-	private $href=null;
-	private $type=null;
-	
-	private function __construct($apiName)
-	{
-		$this->apiName=$apiName;
-	}
-	
-	public static function getInstance($apiName)
-	{
-		return new ZCRMModuleRelatedList($apiName);
-	}
-	
-	public function setApiName($apiName)
-	{
-		$this->apiName=$apiName;
-	}
+    private $apiName=null;
+    private $module=null;
+    private $displayLabel=null;
+    private $visible=null;
+    private $name=null;
+    private $id=null;
+    private $href=null;
+    private $type=null;
+    
+    private function __construct($apiName)
+    {
+        $this->apiName=$apiName;
+    }
+    
+    public static function getInstance($apiName)
+    {
+        return new ZCRMModuleRelatedList($apiName);
+    }
+    
+    public function setApiName($apiName)
+    {
+        $this->apiName=$apiName;
+    }
 
     /**
      * apiName
      * @return APIName
      */
-    public function getApiName(){
+    public function getApiName()
+    {
         return $this->apiName;
     }
 
@@ -38,7 +41,8 @@ class ZCRMModuleRelatedList
      * module
      * @return module
      */
-    public function getModule(){
+    public function getModule()
+    {
         return $this->module;
     }
 
@@ -47,7 +51,8 @@ class ZCRMModuleRelatedList
      * @param $module
      * @return ZCRMModuleRelatedList
      */
-    public function setModule($module){
+    public function setModule($module)
+    {
         $this->module = $module;
     }
 
@@ -55,7 +60,8 @@ class ZCRMModuleRelatedList
      * displayLabel
      * @return unkown
      */
-    public function getDisplayLabel(){
+    public function getDisplayLabel()
+    {
         return $this->displayLabel;
     }
 
@@ -64,7 +70,8 @@ class ZCRMModuleRelatedList
      * @param unkown $displayLabel
      * @return ZCRMModuleRelatedList
      */
-    public function setDisplayLabel($displayLabel){
+    public function setDisplayLabel($displayLabel)
+    {
         $this->displayLabel = $displayLabel;
     }
 
@@ -72,7 +79,8 @@ class ZCRMModuleRelatedList
      * visible
      * @return unkown
      */
-    public function isVisible(){
+    public function isVisible()
+    {
         return $this->visible;
     }
 
@@ -81,7 +89,8 @@ class ZCRMModuleRelatedList
      * @param unkown $visible
      * @return ZCRMModuleRelatedList
      */
-    public function setVisible($visible){
+    public function setVisible($visible)
+    {
         $this->visible = $visible;
     }
 
@@ -89,7 +98,8 @@ class ZCRMModuleRelatedList
      * name
      * @return unkown
      */
-    public function getName(){
+    public function getName()
+    {
         return $this->name;
     }
 
@@ -98,7 +108,8 @@ class ZCRMModuleRelatedList
      * @param unkown $name
      * @return ZCRMModuleRelatedList
      */
-    public function setName($name){
+    public function setName($name)
+    {
         $this->name = $name;
     }
 
@@ -106,7 +117,8 @@ class ZCRMModuleRelatedList
      * id
      * @return unkown
      */
-    public function getId(){
+    public function getId()
+    {
         return $this->id;
     }
 
@@ -115,7 +127,8 @@ class ZCRMModuleRelatedList
      * @param unkown $id
      * @return ZCRMModuleRelatedList
      */
-    public function setId($id){
+    public function setId($id)
+    {
         $this->id = $id;
     }
 
@@ -123,7 +136,8 @@ class ZCRMModuleRelatedList
      * href
      * @return unkown
      */
-    public function getHref(){
+    public function getHref()
+    {
         return $this->href;
     }
 
@@ -132,7 +146,8 @@ class ZCRMModuleRelatedList
      * @param unkown $href
      * @return ZCRMModuleRelatedList
      */
-    public function setHref($href){
+    public function setHref($href)
+    {
         $this->href = $href;
     }
 
@@ -140,7 +155,8 @@ class ZCRMModuleRelatedList
      * type
      * @return unkown
      */
-    public function getType(){
+    public function getType()
+    {
         return $this->type;
     }
 
@@ -149,21 +165,20 @@ class ZCRMModuleRelatedList
      * @param unkown $type
      * @return ZCRMModuleRelatedList
      */
-    public function setType($type){
+    public function setType($type)
+    {
         $this->type = $type;
     }
     
     public function setRelatedListProperties($relatedListDetails)
     {
-    	$this->setModule($relatedListDetails['module']);
-    	$this->setDisplaylabel($relatedListDetails['display_label']);
-    	$this->setId($relatedListDetails['id']);
-    	$this->setName($relatedListDetails['name']);
-    	$this->setType($relatedListDetails['type']);
-    	$this->setHref($relatedListDetails['href']);
-    	$this->setVisible(isset($relatedListDetails['visible'])?(boolean)$relatedListDetails['visible']:false);
-    	return $this;
+        $this->setModule($relatedListDetails['module']);
+        $this->setDisplaylabel($relatedListDetails['display_label']);
+        $this->setId($relatedListDetails['id']);
+        $this->setName($relatedListDetails['name']);
+        $this->setType($relatedListDetails['type']);
+        $this->setHref($relatedListDetails['href']);
+        $this->setVisible(isset($relatedListDetails['visible']) ? (boolean)$relatedListDetails['visible'] : false);
+        return $this;
     }
-
 }
-?>

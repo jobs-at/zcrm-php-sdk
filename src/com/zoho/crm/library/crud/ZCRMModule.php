@@ -1,286 +1,291 @@
 <?php
-require_once 'ZCRMRecord.php';
-require_once realpath(dirname(__FILE__).'/../api/handler/EntityAPIHandler.php');
-require_once realpath(dirname(__FILE__).'/../api/handler/MassEntityAPIHandler.php');
+
+namespace Jobs\ZohoSDK\com\zoho\crm\library\crud;
+
+use Jobs\ZohoSDK\com\zoho\crm\library\api\handler\EntityAPIHandler;
+use Jobs\ZohoSDK\com\zoho\crm\library\api\handler\MassEntityAPIHandler;
+use Jobs\ZohoSDK\com\zoho\crm\library\api\handler\ModuleAPIHandler;
 
 class ZCRMModule
 {
-	private $convertable=null;
-	private $creatable=null;
-	private $editable=null;
-	private $deletable=null;
-	private $webLink=null;
-	private $singularLabel=null;
-	private $pluralLabel=null;
-	private $modifiedBy=null;
-	private $modifiedTime=null;
-	private $viewable=null;
-	private $apiSupported=null;
-	private $customModule=null;
-	private $scoringSupported=null;
-	private $id=null;
-	private $moduleName=null;
-	private $businessCardFieldLimit=null;
-	private $apiName=null;
-	private $businessCardFields=array();
-	private $profiles=array();
-	private $displayFieldName=null;
-	private $displayFieldId=null;
-	private $relatedList=null;
-	private $layouts=null;
-	private $fields=null;
-	private $relatedListProperties=null;
-	private $properties=null;
-	private $perPage=null;
-	private $searchLayoutFields=null;
-	private $defaultTerritoryName=null;
-	private $defaultTerritoryId=null;
-	private $defaultCustomViewId=null;
-	private $customView=null;
-	private $globalSearchSupported;
-	private $sequenceNumber;
-	
-	private function __construct($apiName)
-	{
-		$this->apiName=$apiName;
-	}
-	public static function getInstance($apiName)
-	{
-		return new ZCRMModule($apiName);
-	}
-	
-	public function isCreatable()
-	{
-		return $this->creatable;
-	}
-	public function setCreatable($creatable)
-	{
-		$this->creatable=$creatable;
-	}
-	
-	public function isConvertable()
-	{
-		return $this->convertable;
-	}
-	public function setConvertable($convertable)
-	{
-		$this->convertable=$convertable;
-	}
-	
-	public function isEditable()
-	{
-		return $this->editable;
-	}
-	public function setEditable($editable)
-	{
-		$this->editable=$editable;
-	}
-	
-	public function isDeletable()
-	{
-		return $this->deletable;
-	}
-	public function setDeletable($deletable)
-	{
-		$this->deletable=$deletable;
-	}
-	
-	public function getWebLink()
-	{
-		return $this->webLink;
-	}
-	public function setWebLink($webLink)
-	{
-		$this->webLink=$webLink;
-	}
-	
-	public function getSingularLabel()
-	{
-		return $this->singularLabel;
-	}
-	public function setSingularLabel($singularLabel)
-	{
-		$this->singularLabel=$singularLabel;
-	}
-	
-	public function getPluralLabel()
-	{
-		return $this->pluralLabel;
-	}
-	public function setPluralLabel($pluralLabel)
-	{
-		$this->pluralLabel=$pluralLabel;
-	}
-	
-	public function getModifiedBy()
-	{
-		return $this->modifiedBy;
-	}
-	public function setModifiedBy($modifiedBy)
-	{
-		$this->modifiedBy=$modifiedBy;
-	}
-	
-	public function getModifiedTime()
-	{
-		return $this->modifiedTime;
-	}
-	public function setModifiedTime($modifiedTime)
-	{
-		$this->modifiedTime=$modifiedTime;
-	}
-	
-	public function isViewable()
-	{
-		return $this->viewable;
-	}
-	public function setViewable($viewable)
-	{
-		$this->viewable=$viewable;
-	}
-	
-	public function isApiSupported()
-	{
-		return $this->apiSupported;
-	}
-	public function setApiSupported($apiSupported)
-	{
-		$this->apiSupported=$apiSupported;
-	}
-	
-	public function isCustomModule()
-	{
-		return $this->customModule;
-	}
-	public function setCustomModule($customModule)
-	{
-		$this->customModule=$customModule;
-	}
-	
-	public function isScoringSupported()
-	{
-		return $this->scoringSupported;
-	}
-	public function setScoringSupported($scoringSupported)
-	{
-		$this->scoringSupported=$scoringSupported;
-	}
-	
-	public function getId()
-	{
-		return $this->id;
-	}
-	public function setId($id)
-	{
-		$this->id=$id;
-	}
-	
-	public function getModuleName()
-	{
-		return $this->moduleName;
-	}
-	public function setModuleName($moduleName)
-	{
-		$this->moduleName=$moduleName;
-	}
-	
-	public function getBusinessCardFieldLimit()
-	{
-		return $this->businessCardFieldLimit;
-	}
-	public function setBusinessCardFieldLimit($businessCardFieldLimit)
-	{
-		$this->businessCardFieldLimit=$businessCardFieldLimit;
-	}
-	
-	public function setBusinessCardFields($businessCardFields)
-	{
-		$this->businessCardFields=$businessCardFields;
-	}
-	public function getBusinessCardFields()
-	{
-		return $this->businessCardFields;
-	}
-	
-	public function setAPIName($apiName)
-	{
-		$this->apiName=$apiName;
-	}
-	public function getAPIName()
-	{
-		return $this->apiName;
-	}
-	
-	public function setAllProfiles($profiles)
-	{
-		$this->profiles=$profiles;
-	}
-	public function getAllProfiles()
-	{
-		return $this->profiles;
-	}
-	
-	public function setDisplayFieldName($name)
-	{
-		$this->displayFieldName=$name;
-	}
-	public function getDisplayFieldName()
-	{
-		return $this->displayFieldName;
-	}
-	
-	public function setDisplayFieldId($id)
-	{
-		$this->displayFieldId=$id;
-	}
-	public function getDisplayFieldId()
-	{
-		return $this->displayFieldId;
-	}
-	
+    private $convertable=null;
+    private $creatable=null;
+    private $editable=null;
+    private $deletable=null;
+    private $webLink=null;
+    private $singularLabel=null;
+    private $pluralLabel=null;
+    private $modifiedBy=null;
+    private $modifiedTime=null;
+    private $viewable=null;
+    private $apiSupported=null;
+    private $customModule=null;
+    private $scoringSupported=null;
+    private $id=null;
+    private $moduleName=null;
+    private $businessCardFieldLimit=null;
+    private $apiName=null;
+    private $businessCardFields=[];
+    private $profiles=[];
+    private $displayFieldName=null;
+    private $displayFieldId=null;
+    private $relatedList=null;
+    private $layouts=null;
+    private $fields=null;
+    private $relatedListProperties=null;
+    private $properties=null;
+    private $perPage=null;
+    private $searchLayoutFields=null;
+    private $defaultTerritoryName=null;
+    private $defaultTerritoryId=null;
+    private $defaultCustomViewId=null;
+    private $customView=null;
+    private $globalSearchSupported;
+    private $sequenceNumber;
+    
+    private function __construct($apiName)
+    {
+        $this->apiName=$apiName;
+    }
+    public static function getInstance($apiName)
+    {
+        return new ZCRMModule($apiName);
+    }
+    
+    public function isCreatable()
+    {
+        return $this->creatable;
+    }
+    public function setCreatable($creatable)
+    {
+        $this->creatable=$creatable;
+    }
+    
+    public function isConvertable()
+    {
+        return $this->convertable;
+    }
+    public function setConvertable($convertable)
+    {
+        $this->convertable=$convertable;
+    }
+    
+    public function isEditable()
+    {
+        return $this->editable;
+    }
+    public function setEditable($editable)
+    {
+        $this->editable=$editable;
+    }
+    
+    public function isDeletable()
+    {
+        return $this->deletable;
+    }
+    public function setDeletable($deletable)
+    {
+        $this->deletable=$deletable;
+    }
+    
+    public function getWebLink()
+    {
+        return $this->webLink;
+    }
+    public function setWebLink($webLink)
+    {
+        $this->webLink=$webLink;
+    }
+    
+    public function getSingularLabel()
+    {
+        return $this->singularLabel;
+    }
+    public function setSingularLabel($singularLabel)
+    {
+        $this->singularLabel=$singularLabel;
+    }
+    
+    public function getPluralLabel()
+    {
+        return $this->pluralLabel;
+    }
+    public function setPluralLabel($pluralLabel)
+    {
+        $this->pluralLabel=$pluralLabel;
+    }
+    
+    public function getModifiedBy()
+    {
+        return $this->modifiedBy;
+    }
+    public function setModifiedBy($modifiedBy)
+    {
+        $this->modifiedBy=$modifiedBy;
+    }
+    
+    public function getModifiedTime()
+    {
+        return $this->modifiedTime;
+    }
+    public function setModifiedTime($modifiedTime)
+    {
+        $this->modifiedTime=$modifiedTime;
+    }
+    
+    public function isViewable()
+    {
+        return $this->viewable;
+    }
+    public function setViewable($viewable)
+    {
+        $this->viewable=$viewable;
+    }
+    
+    public function isApiSupported()
+    {
+        return $this->apiSupported;
+    }
+    public function setApiSupported($apiSupported)
+    {
+        $this->apiSupported=$apiSupported;
+    }
+    
+    public function isCustomModule()
+    {
+        return $this->customModule;
+    }
+    public function setCustomModule($customModule)
+    {
+        $this->customModule=$customModule;
+    }
+    
+    public function isScoringSupported()
+    {
+        return $this->scoringSupported;
+    }
+    public function setScoringSupported($scoringSupported)
+    {
+        $this->scoringSupported=$scoringSupported;
+    }
+    
+    public function getId()
+    {
+        return $this->id;
+    }
+    public function setId($id)
+    {
+        $this->id=$id;
+    }
+    
+    public function getModuleName()
+    {
+        return $this->moduleName;
+    }
+    public function setModuleName($moduleName)
+    {
+        $this->moduleName=$moduleName;
+    }
+    
+    public function getBusinessCardFieldLimit()
+    {
+        return $this->businessCardFieldLimit;
+    }
+    public function setBusinessCardFieldLimit($businessCardFieldLimit)
+    {
+        $this->businessCardFieldLimit=$businessCardFieldLimit;
+    }
+    
+    public function setBusinessCardFields($businessCardFields)
+    {
+        $this->businessCardFields=$businessCardFields;
+    }
+    public function getBusinessCardFields()
+    {
+        return $this->businessCardFields;
+    }
+    
+    public function setAPIName($apiName)
+    {
+        $this->apiName=$apiName;
+    }
+    public function getAPIName()
+    {
+        return $this->apiName;
+    }
+    
+    public function setAllProfiles($profiles)
+    {
+        $this->profiles=$profiles;
+    }
+    public function getAllProfiles()
+    {
+        return $this->profiles;
+    }
+    
+    public function setDisplayFieldName($name)
+    {
+        $this->displayFieldName=$name;
+    }
+    public function getDisplayFieldName()
+    {
+        return $this->displayFieldName;
+    }
+    
+    public function setDisplayFieldId($id)
+    {
+        $this->displayFieldId=$id;
+    }
+    public function getDisplayFieldId()
+    {
+        return $this->displayFieldId;
+    }
+    
 
     /**
      * relatedList
      * @return ZCRMModuleRelatedList instance
      */
-    public function getRelatedLists(){
+    public function getRelatedLists()
+    {
         return $this->relatedList;
     }
 
     /**
      * relatedList
      * @param ZCRMModuleRelatedList instance $relatedList
-     * @return 
+     * @return
      */
-    public function setRelatedLists($relatedList){
+    public function setRelatedLists($relatedList)
+    {
         $this->relatedList = $relatedList;
     }
     
     public function setLayouts($layouts)
     {
-    	$this->layouts=$layouts;
+        $this->layouts=$layouts;
     }
     public function getLayouts()
     {
-    	return $this->layouts;
+        return $this->layouts;
     }
     
     public function setFields($fields)
     {
-    	$this->fields=$fields;
+        $this->fields=$fields;
     }
     public function getFields()
     {
-    	return $this->fields;
+        return $this->fields;
     }
     
     public function setRelatedListProperties($relatedListProp)
     {
-    	$this->relatedListProperties=$relatedListProp;
+        $this->relatedListProperties=$relatedListProp;
     }
     public function getRelatedListProperties()
     {
-    	return $this->relatedListProperties;
+        return $this->relatedListProperties;
     }
 
 
@@ -288,7 +293,8 @@ class ZCRMModule
      * properties
      * @return Module Properties
      */
-    public function getProperties(){
+    public function getProperties()
+    {
         return $this->properties;
     }
 
@@ -296,7 +302,8 @@ class ZCRMModule
      * properties
      * @param unkown $properties
      */
-    public function setProperties($properties){
+    public function setProperties($properties)
+    {
         $this->properties = $properties;
     }
 
@@ -305,7 +312,8 @@ class ZCRMModule
      * Get the value for the number of records has to shown in module list view
      * @return Number
      */
-    public function getPerPage(){
+    public function getPerPage()
+    {
         return $this->perPage;
     }
 
@@ -313,7 +321,8 @@ class ZCRMModule
      * Set the value for the number of records has to shown in module list view
      * @param Number $perPage
      */
-    public function setPerPage($perPage){
+    public function setPerPage($perPage)
+    {
         $this->perPage = $perPage;
     }
 
@@ -321,7 +330,8 @@ class ZCRMModule
      * Get the module search layout fields
      * @return Array
      */
-    public function getSearchLayoutFields(){
+    public function getSearchLayoutFields()
+    {
         return $this->searchLayoutFields;
     }
 
@@ -329,7 +339,8 @@ class ZCRMModule
      * Set the module search layout fields
      * @param Array $searchLayoutFields
      */
-    public function setSearchLayoutFields($searchLayoutFields){
+    public function setSearchLayoutFields($searchLayoutFields)
+    {
         $this->searchLayoutFields = $searchLayoutFields;
     }
 
@@ -337,7 +348,8 @@ class ZCRMModule
      * Get the module's defaultTerritoryName
      * @return String
      */
-    public function getDefaultTerritoryName(){
+    public function getDefaultTerritoryName()
+    {
         return $this->defaultTerritoryName;
     }
 
@@ -345,7 +357,8 @@ class ZCRMModule
      * Set the module's defaultTerritoryName
      * @param String $defaultTerritoryName
      */
-    public function setDefaultTerritoryName($defaultTerritoryName){
+    public function setDefaultTerritoryName($defaultTerritoryName)
+    {
         $this->defaultTerritoryName = $defaultTerritoryName;
     }
 
@@ -353,7 +366,8 @@ class ZCRMModule
      * Get the module's defaultTerritoryId
      * @return Long
      */
-    public function getDefaultTerritoryId(){
+    public function getDefaultTerritoryId()
+    {
         return $this->defaultTerritoryId;
     }
 
@@ -361,7 +375,8 @@ class ZCRMModule
      * Set the module's defaultTerritoryId
      * @param Long $defaultTerritoryId
      */
-    public function setDefaultTerritoryId($defaultTerritoryId){
+    public function setDefaultTerritoryId($defaultTerritoryId)
+    {
         $this->defaultTerritoryId = $defaultTerritoryId;
     }
     
@@ -370,7 +385,7 @@ class ZCRMModule
      */
     public function setDefaultCustomView($customView)
     {
-    	$this->customView=$customView;
+        $this->customView=$customView;
     }
     
     /**
@@ -378,39 +393,43 @@ class ZCRMModule
      */
     public function getDefaultCustomView()
     {
-    	return $this->customView;
+        return $this->customView;
     }
     
     /**
      * globalSearchSupported
      * @return boolean
      */
-    public function isGlobalSearchSupported(){
-    	return $this->globalSearchSupported;
+    public function isGlobalSearchSupported()
+    {
+        return $this->globalSearchSupported;
     }
     
     /**
      * globalSearchSupported
      * @param boolean $globalSearchSupported
      */
-    public function setGlobalSearchSupported($globalSearchSupported){
-    	$this->globalSearchSupported = $globalSearchSupported;
+    public function setGlobalSearchSupported($globalSearchSupported)
+    {
+        $this->globalSearchSupported = $globalSearchSupported;
     }
     
     /**
      * sequenceNumber
      * @return integer
      */
-    public function getSequenceNumber(){
-    	return $this->sequenceNumber;
+    public function getSequenceNumber()
+    {
+        return $this->sequenceNumber;
     }
     
     /**
      * sequenceNumber
      * @param integer $sequenceNumber
      */
-    public function setSequenceNumber($sequenceNumber){
-    	$this->sequenceNumber = $sequenceNumber;
+    public function setSequenceNumber($sequenceNumber)
+    {
+        $this->sequenceNumber = $sequenceNumber;
     }
     
     
@@ -420,7 +439,7 @@ class ZCRMModule
      */
     public function getFieldDetails($fieldId)
     {
-    	return ModuleAPIHandler::getInstance($this)->getFieldDetails($fieldId);
+        return ModuleAPIHandler::getInstance($this)->getFieldDetails($fieldId);
     }
     
     /**
@@ -429,7 +448,7 @@ class ZCRMModule
      */
     public function getAllFields()
     {
-    	return ModuleAPIHandler::getInstance($this)->getAllFields();
+        return ModuleAPIHandler::getInstance($this)->getAllFields();
     }
     
     /**
@@ -438,7 +457,7 @@ class ZCRMModule
      */
     public function getAllLayouts()
     {
-    	return ModuleAPIHandler::getInstance($this)->getAllLayouts();
+        return ModuleAPIHandler::getInstance($this)->getAllLayouts();
     }
     
     /**
@@ -448,7 +467,7 @@ class ZCRMModule
      */
     public function getLayoutDetails($layoutId)
     {
-    	return ModuleAPIHandler::getInstance($this)->getLayoutDetails($layoutId);
+        return ModuleAPIHandler::getInstance($this)->getLayoutDetails($layoutId);
     }
     
     /**
@@ -457,7 +476,7 @@ class ZCRMModule
      */
     public function getAllCustomViews()
     {
-    	return ModuleAPIHandler::getInstance($this)->getAllCustomViews();
+        return ModuleAPIHandler::getInstance($this)->getAllCustomViews();
     }
     /**
      * Returns the custom view details of the module.
@@ -465,7 +484,7 @@ class ZCRMModule
      */
     public function getCustomView($customViewId)
     {
-    	return ModuleAPIHandler::getInstance($this)->getCustomView($customViewId);
+        return ModuleAPIHandler::getInstance($this)->getCustomView($customViewId);
     }
     
     /**
@@ -474,7 +493,7 @@ class ZCRMModule
      */
     public function updateModuleSettings()
     {
-    	return ModuleAPIHandler::getInstance($this)->updateModuleSettings();
+        return ModuleAPIHandler::getInstance($this)->updateModuleSettings();
     }
     
     /**
@@ -483,7 +502,7 @@ class ZCRMModule
      */
     public function updateCustomView($customViewInstance)
     {
-    	return ModuleAPIHandler::getInstance($this)->updateCustomView($customViewInstance);
+        return ModuleAPIHandler::getInstance($this)->updateCustomView($customViewInstance);
     }
     
     /**
@@ -492,7 +511,7 @@ class ZCRMModule
      */
     public function getAllRelatedLists()
     {
-    	return ModuleAPIHandler::getInstance($this)->getAllRelatedLists();
+        return ModuleAPIHandler::getInstance($this)->getAllRelatedLists();
     }
     
     /**
@@ -501,7 +520,7 @@ class ZCRMModule
      */
     public function getRelatedListDetails($relatedListId)
     {
-    	return ModuleAPIHandler::getInstance($this)->getRelatedListDetails($relatedListId);
+        return ModuleAPIHandler::getInstance($this)->getRelatedListDetails($relatedListId);
     }
 
 
@@ -509,7 +528,8 @@ class ZCRMModule
      * Get module's defaultCustomViewId
      * @return Long
      */
-    public function getDefaultCustomViewId(){
+    public function getDefaultCustomViewId()
+    {
         return $this->defaultCustomViewId;
     }
 
@@ -517,68 +537,68 @@ class ZCRMModule
      * Set module's defaultCustomViewId
      * @param Long $defaultCustomViewId
      */
-    public function setDefaultCustomViewId($defaultCustomViewId){
+    public function setDefaultCustomViewId($defaultCustomViewId)
+    {
         $this->defaultCustomViewId = $defaultCustomViewId;
     }
     
     public function getRecord($entityId)
     {
-    	$record = ZCRMRecord::getInstance($this->apiName, $entityId);
-    	return EntityAPIHandler::getInstance($record)->getRecord();
+        $record = ZCRMRecord::getInstance($this->apiName, $entityId);
+        return EntityAPIHandler::getInstance($record)->getRecord();
     }
     
-    public function getRecords($cvId=null, $sortByField=null, $sortOrder=null, $startIndex=1,$endIndex=200,$headers=null)
+    public function getRecords($cvId=null, $sortByField=null, $sortOrder=null, $startIndex=1, $endIndex=200, $headers=null)
     {
-    	return MassEntityAPIHandler::getInstance($this)->getRecords($cvId,$sortByField,$sortOrder,$startIndex,$endIndex,$headers);
+        return MassEntityAPIHandler::getInstance($this)->getRecords($cvId, $sortByField, $sortOrder, $startIndex, $endIndex, $headers);
     }
     
-    public function searchRecords($searchWord,$page=1,$perPage=200)
+    public function searchRecords($searchWord, $page=1, $perPage=200)
     {
-    	return MassEntityAPIHandler::getInstance($this)->searchRecords($searchWord,$page,$perPage,"word");
+        return MassEntityAPIHandler::getInstance($this)->searchRecords($searchWord, $page, $perPage, 'word');
     }
-    public function searchRecordsByPhone($phone,$page=1,$perPage=200)
+    public function searchRecordsByPhone($phone, $page=1, $perPage=200)
     {
-    	return MassEntityAPIHandler::getInstance($this)->searchRecords($phone,$page,$perPage,"phone");
+        return MassEntityAPIHandler::getInstance($this)->searchRecords($phone, $page, $perPage, 'phone');
     }
-    public function searchRecordsByEmail($email,$page=1,$perPage=200)
+    public function searchRecordsByEmail($email, $page=1, $perPage=200)
     {
-    	return MassEntityAPIHandler::getInstance($this)->searchRecords($email,$page,$perPage,"email");
+        return MassEntityAPIHandler::getInstance($this)->searchRecords($email, $page, $perPage, 'email');
     }
-    public function searchRecordsByCriteria($criteria,$page=1,$perPage=200)
+    public function searchRecordsByCriteria($criteria, $page=1, $perPage=200)
     {
-    	return MassEntityAPIHandler::getInstance($this)->searchRecords($criteria,$page,$perPage,"criteria");
+        return MassEntityAPIHandler::getInstance($this)->searchRecords($criteria, $page, $perPage, 'criteria');
     }
-    public function massUpdateRecords($entityIds,$fieldApiName,$value)
+    public function massUpdateRecords($entityIds, $fieldApiName, $value)
     {
-    	return MassEntityAPIHandler::getInstance($this)->massUpdateRecords($entityIds,$fieldApiName,$value);
+        return MassEntityAPIHandler::getInstance($this)->massUpdateRecords($entityIds, $fieldApiName, $value);
     }
-    public function updateRecords($records,$trigger=null)
+    public function updateRecords($records, $trigger=null)
     {
-    	return MassEntityAPIHandler::getInstance($this)->updateRecords($records,$trigger);
+        return MassEntityAPIHandler::getInstance($this)->updateRecords($records, $trigger);
     }
-    public function createRecords($records,$trigger=null)
+    public function createRecords($records, $trigger=null)
     {
-    	return MassEntityAPIHandler::getInstance($this)->createRecords($records,$trigger);
+        return MassEntityAPIHandler::getInstance($this)->createRecords($records, $trigger);
     }
     public function upsertRecords($records)
     {
-    	return MassEntityAPIHandler::getInstance($this)->upsertRecords($records);
+        return MassEntityAPIHandler::getInstance($this)->upsertRecords($records);
     }
     public function deleteRecords($entityIds)
     {
-    	return MassEntityAPIHandler::getInstance($this)->deleteRecords($entityIds);
+        return MassEntityAPIHandler::getInstance($this)->deleteRecords($entityIds);
     }
     public function getAllDeletedRecords()
     {
-    	return MassEntityAPIHandler::getInstance($this)->getAllDeletedRecords();
+        return MassEntityAPIHandler::getInstance($this)->getAllDeletedRecords();
     }
     public function getRecycleBinRecords()
     {
-    	return MassEntityAPIHandler::getInstance($this)->getRecycleBinRecords();
+        return MassEntityAPIHandler::getInstance($this)->getRecycleBinRecords();
     }
     public function getPermanentlyDeletedRecords()
     {
-    	return MassEntityAPIHandler::getInstance($this)->getPermanentlyDeletedRecords();
+        return MassEntityAPIHandler::getInstance($this)->getPermanentlyDeletedRecords();
     }
 }
-?>

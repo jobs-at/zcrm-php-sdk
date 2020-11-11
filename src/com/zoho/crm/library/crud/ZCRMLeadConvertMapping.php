@@ -1,27 +1,30 @@
 <?php
 
+namespace Jobs\ZohoSDK\com\zoho\crm\library\crud;
+
 class ZCRMLeadConvertMapping
 {
-	private $name;
-	private $id;
-	private $fields=array();
-	
-	private function __construct($name,$id)
-	{
-		$this->name=$name;
-		$this->id=$id;
-	}
-	
-	public static function getInstance($name,$id)
-	{
-		return new ZCRMLeadConvertMapping($name,$id);
-	}
-	
+    private $name;
+    private $id;
+    private $fields=[];
+    
+    private function __construct($name, $id)
+    {
+        $this->name=$name;
+        $this->id=$id;
+    }
+    
+    public static function getInstance($name, $id)
+    {
+        return new ZCRMLeadConvertMapping($name, $id);
+    }
+    
     /**
      * name
      * @return String
      */
-    public function getName(){
+    public function getName()
+    {
         return $this->name;
     }
 
@@ -29,7 +32,8 @@ class ZCRMLeadConvertMapping
      * name
      * @param String $name
      */
-    public function setName($name){
+    public function setName($name)
+    {
         $this->name = $name;
     }
 
@@ -37,7 +41,8 @@ class ZCRMLeadConvertMapping
      * id
      * @return Long
      */
-    public function getId(){
+    public function getId()
+    {
         return $this->id;
     }
 
@@ -45,7 +50,8 @@ class ZCRMLeadConvertMapping
      * id
      * @param Long $id
      */
-    public function setId($id){
+    public function setId($id)
+    {
         $this->id = $id;
     }
 
@@ -53,7 +59,8 @@ class ZCRMLeadConvertMapping
      * fields
      * @return array of ZCRMLeadConvertMappingField instances
      */
-    public function getFields(){
+    public function getFields()
+    {
         return $this->fields;
     }
 
@@ -61,9 +68,8 @@ class ZCRMLeadConvertMapping
      * fields
      * @param ZCRMLeadConvertMappingField_Instance
      */
-    public function addFields($fieldIns){
-        array_push($this->fields ,$fieldIns);
+    public function addFields($fieldIns)
+    {
+        array_push($this->fields, $fieldIns);
     }
-
 }
-?>

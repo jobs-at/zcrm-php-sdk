@@ -1,5 +1,6 @@
 <?php
-require_once 'APIHandlerInterface.php';
+
+namespace Jobs\ZohoSDK\com\zoho\crm\library\api\handler;
 
 class APIHandler implements APIHandlerInterface
 {
