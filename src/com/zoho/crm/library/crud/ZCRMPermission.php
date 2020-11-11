@@ -1,28 +1,31 @@
 <?php
 
+namespace Jobs\ZohoSDK\com\zoho\crm\library\crud;
+
 class ZCRMPermission
 {
-	private $displayLabel;
-	private $module;
-	private $id;
-	private $name;
-	private $enabled;
+    private $displayLabel;
+    private $module;
+    private $id;
+    private $name;
+    private $enabled;
 
-	private function __construct($name,$id)
-	{
-		$this->name=$name;
-		$this->id=$id;
-	}
-	
-	public static function getInstance($name,$id)
-	{
-		return new ZCRMPermission($name,$id);
-	}
+    private function __construct($name, $id)
+    {
+        $this->name=$name;
+        $this->id=$id;
+    }
+    
+    public static function getInstance($name, $id)
+    {
+        return new ZCRMPermission($name, $id);
+    }
     /**
      * displayLabel
      * @return String
      */
-    public function getDisplayLabel(){
+    public function getDisplayLabel()
+    {
         return $this->displayLabel;
     }
 
@@ -30,7 +33,8 @@ class ZCRMPermission
      * displayLabel
      * @param String $displayLabel
      */
-    public function setDisplayLabel($displayLabel){
+    public function setDisplayLabel($displayLabel)
+    {
         $this->displayLabel = $displayLabel;
     }
 
@@ -38,7 +42,8 @@ class ZCRMPermission
      * module
      * @return String
      */
-    public function getModule(){
+    public function getModule()
+    {
         return $this->module;
     }
 
@@ -46,7 +51,8 @@ class ZCRMPermission
      * module
      * @param String $module
      */
-    public function setModule($module){
+    public function setModule($module)
+    {
         $this->module = $module;
     }
 
@@ -54,7 +60,8 @@ class ZCRMPermission
      * id
      * @return Long
      */
-    public function getId(){
+    public function getId()
+    {
         return $this->id;
     }
 
@@ -62,7 +69,8 @@ class ZCRMPermission
      * id
      * @param Long $id
      */
-    public function setId($id){
+    public function setId($id)
+    {
         $this->id = $id;
     }
 
@@ -70,7 +78,8 @@ class ZCRMPermission
      * name
      * @return String
      */
-    public function getName(){
+    public function getName()
+    {
         return $this->name;
     }
 
@@ -78,7 +87,8 @@ class ZCRMPermission
      * name
      * @param String $name
      */
-    public function setName($name){
+    public function setName($name)
+    {
         $this->name = $name;
     }
 
@@ -86,7 +96,8 @@ class ZCRMPermission
      * enabled
      * @return Boolean
      */
-    public function isEnabled(){
+    public function isEnabled()
+    {
         return $this->enabled;
     }
 
@@ -94,9 +105,8 @@ class ZCRMPermission
      * enabled
      * @param Boolean $enabled
      */
-    public function setEnabled($enabled){
+    public function setEnabled($enabled)
+    {
         $this->enabled = $enabled;
     }
-
 }
-?>

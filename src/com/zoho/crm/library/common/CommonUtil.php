@@ -1,5 +1,9 @@
 <?php
-require_once realpath(dirname(__FILE__) . "/../exception/Logger.php");
+
+namespace Jobs\ZohoSDK\com\zoho\crm\library\common;
+
+use Exception;
+use Jobs\ZohoSDK\com\zoho\crm\library\exception\Logger;
 
 class CommonUtil
 {
@@ -9,14 +13,14 @@ class CommonUtil
         try {
             while (!feof($fileHandler)) {
                 $line = fgets($fileHandler);
-                $lineAfterSplit = explode("=", $line);
-                if (strpos($lineAfterSplit[0], "#") === false && count($lineAfterSplit) > 1) {
+                $lineAfterSplit = explode('=', $line);
+                if (strpos($lineAfterSplit[0], '#') === false && count($lineAfterSplit) > 1) {
                     $reponseMap[trim($lineAfterSplit[0])] = trim($lineAfterSplit[1]);
                 }
             }
             fclose($fileHandler);
         } catch (Exception $ex) {
-            Logger::warn("Exception occured while converting file content as map (file::ZohoOAuthUtil.php)");
+            Logger::warn('Exception occured while converting file content as map (file::ZohoOAuthUtil.php)');
         }
         return $reponseMap;
     }
@@ -26,5 +30,3 @@ class CommonUtil
         return new ArrayObject();
     }
 }
-
-?>

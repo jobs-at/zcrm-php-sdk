@@ -1,11 +1,16 @@
 <?php
-require_once realpath(dirname(__FILE__).'/../../api/handler/MetaDataAPIHandler.php');
-require_once realpath(dirname(__FILE__).'/../../common/ZCRMConfigUtil.php');
-require_once realpath(dirname(__FILE__).'/../../setup/metadata/ZCRMOrganization.php');
+namespace Jobs\ZohoSDK\com\zoho\crm\library\setup\restclient;
+
+use Jobs\ZohoSDK\com\zoho\crm\library\api\common\ZCRMConfigUtil;
+use Jobs\ZohoSDK\com\zoho\crm\library\api\handler\MetaDataAPIHandler;
+use Jobs\ZohoSDK\com\zoho\crm\library\api\handler\OrganizationAPIHandler;
+use Jobs\ZohoSDK\com\zoho\crm\library\common\APIConstants;
+use Jobs\ZohoSDK\com\zoho\crm\library\crud\ZCRMModule;
+use Jobs\ZohoSDK\com\zoho\crm\library\crud\ZCRMRecord;
+use Jobs\ZohoSDK\com\zoho\crm\library\setup\metadata\ZCRMOrganization;
 
 class ZCRMRestClient
 {
-	
 	private function __construct()
 	{
 		

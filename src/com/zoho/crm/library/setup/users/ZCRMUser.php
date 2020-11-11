@@ -1,90 +1,96 @@
 <?php
+
+namespace Jobs\ZohoSDK\com\zoho\crm\library\setup\users;
+
 class ZCRMUser
 {
-	private $id=null;
-	private $name=null;
-	private $signature=null;
-	private $country=null;
-	private $role=null;
-	private $customizeInfo=null;
-	private $city=null;
-	private $nameFormat=null;
-	private $language=null;
-	private $locale=null;
-	private $isPersonalAccount=null;
-	private $defaultTabGroup=null;
-	private $street=null;
-	private $alias=null;
-	private $theme=null;
-	private $state=null;
-	private $countryLocale=null;
-	private $fax=null;
-	private $firstName=null;
-	private $email=null;
-	private $zip=null;
-	private $decimalSeparator=null;
-	private $website=null;
-	private $timeFormat=null;
-	private $profile=null;
-	private $mobile=null;
-	private $lastName=null;
-	private $timeZone=null;
-	private $zuid=null;
-	private $isConfirm=null;
-	private $fullName=null;
-	private $phone=null;
-	private $dob=null;
-	private $dateFormat=null;
-	private $status=null;
-	private $createdBy=null;
-	private $modifiedBy=null;
-	private $territories=null;
-	private $reportingTo=null;
-	private $isOnline=null;
-	private $currency=null;
-	private $createdTime=null;
-	private $modifiedTime=null;
-	private $fieldNameVsValue=array();
-	public static $defaultKeys=array("Currency","Modified_Time","created_time","territories","reporting_to","Isonline","created_by","Modified_By","country","id","name","role","customize_info","city","signature","name_format","language","locale","personal_account","default_tab_group","alias","street","theme","state","country_locale","fax","first_name","email","zip","decimal_separator","website","time_format","profile","mobile","last_name","time_zone","zuid","confirm","full_name","phone","dob","date_format","status");
-	
-	
-	private function __construct($id,$name)
-	{
-		$this->id=$id;
-		$this->name=$name;
-	}
-	
-	public static function getInstance($id,$name)
-	{
-		return new ZCRMUser($id,$name);
-	}
+    private $id=null;
+    private $name=null;
+    private $signature=null;
+    private $country=null;
+    private $role=null;
+    private $customizeInfo=null;
+    private $city=null;
+    private $nameFormat=null;
+    private $language=null;
+    private $locale=null;
+    private $isPersonalAccount=null;
+    private $defaultTabGroup=null;
+    private $street=null;
+    private $alias=null;
+    private $theme=null;
+    private $state=null;
+    private $countryLocale=null;
+    private $fax=null;
+    private $firstName=null;
+    private $email=null;
+    private $zip=null;
+    private $decimalSeparator=null;
+    private $website=null;
+    private $timeFormat=null;
+    private $profile=null;
+    private $mobile=null;
+    private $lastName=null;
+    private $timeZone=null;
+    private $zuid=null;
+    private $isConfirm=null;
+    private $fullName=null;
+    private $phone=null;
+    private $dob=null;
+    private $dateFormat=null;
+    private $status=null;
+    private $createdBy=null;
+    private $modifiedBy=null;
+    private $territories=null;
+    private $reportingTo=null;
+    private $isOnline=null;
+    private $currency=null;
+    private $createdTime=null;
+    private $modifiedTime=null;
+    private $fieldNameVsValue=[];
+    public static $defaultKeys=['Currency','Modified_Time','created_time','territories','reporting_to','Isonline','created_by','Modified_By','country','id','name','role','customize_info','city','signature','name_format','language','locale','personal_account','default_tab_group','alias','street','theme','state','country_locale','fax','first_name','email','zip','decimal_separator','website','time_format','profile','mobile','last_name','time_zone','zuid','confirm','full_name','phone','dob','date_format','status'];
+    
+    
+    private function __construct($id, $name)
+    {
+        $this->id=$id;
+        $this->name=$name;
+    }
+    
+    public static function getInstance($id, $name)
+    {
+        return new ZCRMUser($id, $name);
+    }
 
-	/**
-	 * Method to get the field value by api name
-	 * @return String
-	 */
-	public function getFieldValue($apiName){
-		return $this->fieldNameVsValue[$apiName];
-	}
-	
-	/**
-	 * Method to set the field value for api name
-	 * @param $apiName,$value
-	 */
-	public function setFieldValue($apiName,$value){
-		$this->fieldNameVsValue[$apiName] = $value;
-	}
-	
-	public function getData()
-	{
-		return $this->fieldNameVsValue;
-	}
-	
+    /**
+     * Method to get the field value by api name
+     * @return String
+     */
+    public function getFieldValue($apiName)
+    {
+        return $this->fieldNameVsValue[$apiName];
+    }
+    
+    /**
+     * Method to set the field value for api name
+     * @param $apiName,$value
+     */
+    public function setFieldValue($apiName, $value)
+    {
+        $this->fieldNameVsValue[$apiName] = $value;
+    }
+    
+    public function getData()
+    {
+        return $this->fieldNameVsValue;
+    }
+    
     /**
      * id
      * @return Long
      */
-    public function getId(){
+    public function getId()
+    {
         return $this->id;
     }
 
@@ -92,7 +98,8 @@ class ZCRMUser
      * id
      * @param Long $id
      */
-    public function setId($id){
+    public function setId($id)
+    {
         $this->id = $id;
     }
 
@@ -100,7 +107,8 @@ class ZCRMUser
      * name
      * @return String
      */
-    public function getName(){
+    public function getName()
+    {
         return $this->name;
     }
 
@@ -108,7 +116,8 @@ class ZCRMUser
      * name
      * @param String $name
      */
-    public function setName($name){
+    public function setName($name)
+    {
         $this->name = $name;
     }
 
@@ -116,7 +125,8 @@ class ZCRMUser
      * signature
      * @return String
      */
-    public function getSignature(){
+    public function getSignature()
+    {
         return $this->signature;
     }
 
@@ -124,7 +134,8 @@ class ZCRMUser
      * signature
      * @param String $signature
      */
-    public function setSignature($signature){
+    public function setSignature($signature)
+    {
         $this->signature = $signature;
     }
 
@@ -132,7 +143,8 @@ class ZCRMUser
      * country
      * @return String
      */
-    public function getCountry(){
+    public function getCountry()
+    {
         return $this->country;
     }
 
@@ -140,7 +152,8 @@ class ZCRMUser
      * country
      * @param String $country
      */
-    public function setCountry($country){
+    public function setCountry($country)
+    {
         $this->country = $country;
     }
 
@@ -148,7 +161,8 @@ class ZCRMUser
      * role
      * @return String
      */
-    public function getRole(){
+    public function getRole()
+    {
         return $this->role;
     }
 
@@ -156,7 +170,8 @@ class ZCRMUser
      * role
      * @param String $role
      */
-    public function setRole($role){
+    public function setRole($role)
+    {
         $this->role = $role;
     }
 
@@ -164,7 +179,8 @@ class ZCRMUser
      * customizeInfo
      * @return ZCRMUserCustomizeInfo
      */
-    public function getCustomizeInfo(){
+    public function getCustomizeInfo()
+    {
         return $this->customizeInfo;
     }
 
@@ -172,7 +188,8 @@ class ZCRMUser
      * customizeInfo
      * @param ZCRMUserCustomizeInfo $customizeInfo
      */
-    public function setCustomizeInfo($customizeInfo){
+    public function setCustomizeInfo($customizeInfo)
+    {
         $this->customizeInfo = $customizeInfo;
     }
 
@@ -180,7 +197,8 @@ class ZCRMUser
      * city
      * @return String
      */
-    public function getCity(){
+    public function getCity()
+    {
         return $this->city;
     }
 
@@ -188,7 +206,8 @@ class ZCRMUser
      * city
      * @param String $city
      */
-    public function setCity($city){
+    public function setCity($city)
+    {
         $this->city = $city;
     }
 
@@ -196,7 +215,8 @@ class ZCRMUser
      * nameFormat
      * @return String
      */
-    public function getNameFormat(){
+    public function getNameFormat()
+    {
         return $this->nameFormat;
     }
 
@@ -204,7 +224,8 @@ class ZCRMUser
      * nameFormat
      * @param String $nameFormat
      */
-    public function setNameFormat($nameFormat){
+    public function setNameFormat($nameFormat)
+    {
         $this->nameFormat = $nameFormat;
     }
 
@@ -212,7 +233,8 @@ class ZCRMUser
      * language
      * @return String
      */
-    public function getLanguage(){
+    public function getLanguage()
+    {
         return $this->language;
     }
 
@@ -220,7 +242,8 @@ class ZCRMUser
      * language
      * @param String $language
      */
-    public function setLanguage($language){
+    public function setLanguage($language)
+    {
         $this->language = $language;
     }
 
@@ -228,7 +251,8 @@ class ZCRMUser
      * locale
      * @return String
      */
-    public function getLocale(){
+    public function getLocale()
+    {
         return $this->locale;
     }
 
@@ -236,7 +260,8 @@ class ZCRMUser
      * locale
      * @param String $locale
      */
-    public function setLocale($locale){
+    public function setLocale($locale)
+    {
         $this->locale = $locale;
     }
 
@@ -244,7 +269,8 @@ class ZCRMUser
      * isPersonalAccount
      * @return boolean
      */
-    public function isPersonalAccount(){
+    public function isPersonalAccount()
+    {
         return $this->isPersonalAccount;
     }
 
@@ -252,7 +278,8 @@ class ZCRMUser
      * isPersonalAccount
      * @param boolean $isPersonalAccount
      */
-    public function setPersonalAccount($isPersonalAccount){
+    public function setPersonalAccount($isPersonalAccount)
+    {
         $this->isPersonalAccount = $isPersonalAccount;
     }
 
@@ -260,7 +287,8 @@ class ZCRMUser
      * defaultTabGroup
      * @return String
      */
-    public function getDefaultTabGroup(){
+    public function getDefaultTabGroup()
+    {
         return $this->defaultTabGroup;
     }
 
@@ -268,7 +296,8 @@ class ZCRMUser
      * defaultTabGroup
      * @param String $defaultTabGroup
      */
-    public function setDefaultTabGroup($defaultTabGroup){
+    public function setDefaultTabGroup($defaultTabGroup)
+    {
         $this->defaultTabGroup = $defaultTabGroup;
     }
 
@@ -276,7 +305,8 @@ class ZCRMUser
      * street
      * @return String
      */
-    public function getStreet(){
+    public function getStreet()
+    {
         return $this->street;
     }
 
@@ -284,7 +314,8 @@ class ZCRMUser
      * street
      * @param String $street
      */
-    public function setStreet($street){
+    public function setStreet($street)
+    {
         $this->street = $street;
     }
 
@@ -292,7 +323,8 @@ class ZCRMUser
      * alias
      * @return String
      */
-    public function getAlias(){
+    public function getAlias()
+    {
         return $this->alias;
     }
 
@@ -300,7 +332,8 @@ class ZCRMUser
      * alias
      * @param String $alias
      */
-    public function setAlias($alias){
+    public function setAlias($alias)
+    {
         $this->alias = $alias;
     }
 
@@ -308,7 +341,8 @@ class ZCRMUser
      * theme
      * @return ZCRMUserTheme
      */
-    public function getTheme(){
+    public function getTheme()
+    {
         return $this->theme;
     }
 
@@ -316,7 +350,8 @@ class ZCRMUser
      * theme
      * @param ZCRMUserTheme $theme
      */
-    public function setTheme($theme){
+    public function setTheme($theme)
+    {
         $this->theme = $theme;
     }
 
@@ -324,7 +359,8 @@ class ZCRMUser
      * state
      * @return String
      */
-    public function getState(){
+    public function getState()
+    {
         return $this->state;
     }
 
@@ -332,7 +368,8 @@ class ZCRMUser
      * state
      * @param String $state
      */
-    public function setState($state){
+    public function setState($state)
+    {
         $this->state = $state;
     }
 
@@ -340,7 +377,8 @@ class ZCRMUser
      * countryLocale
      * @return String
      */
-    public function getCountryLocale(){
+    public function getCountryLocale()
+    {
         return $this->countryLocale;
     }
 
@@ -348,7 +386,8 @@ class ZCRMUser
      * countryLocale
      * @param String $countryLocale
      */
-    public function setCountryLocale($countryLocale){
+    public function setCountryLocale($countryLocale)
+    {
         $this->countryLocale = $countryLocale;
     }
 
@@ -356,7 +395,8 @@ class ZCRMUser
      * fax
      * @return String
      */
-    public function getFax(){
+    public function getFax()
+    {
         return $this->fax;
     }
 
@@ -364,7 +404,8 @@ class ZCRMUser
      * fax
      * @param String $fax
      */
-    public function setFax($fax){
+    public function setFax($fax)
+    {
         $this->fax = $fax;
     }
 
@@ -372,7 +413,8 @@ class ZCRMUser
      * firstName
      * @return String
      */
-    public function getFirstName(){
+    public function getFirstName()
+    {
         return $this->firstName;
     }
 
@@ -380,7 +422,8 @@ class ZCRMUser
      * firstName
      * @param String $firstName
      */
-    public function setFirstName($firstName){
+    public function setFirstName($firstName)
+    {
         $this->firstName = $firstName;
     }
 
@@ -388,7 +431,8 @@ class ZCRMUser
      * email
      * @return String
      */
-    public function getEmail(){
+    public function getEmail()
+    {
         return $this->email;
     }
 
@@ -396,7 +440,8 @@ class ZCRMUser
      * email
      * @param String $email
      */
-    public function setEmail($email){
+    public function setEmail($email)
+    {
         $this->email = $email;
     }
 
@@ -404,7 +449,8 @@ class ZCRMUser
      * zip
      * @return String
      */
-    public function getZip(){
+    public function getZip()
+    {
         return $this->zip;
     }
 
@@ -412,7 +458,8 @@ class ZCRMUser
      * zip
      * @param String $zip
      */
-    public function setZip($zip){
+    public function setZip($zip)
+    {
         $this->zip = $zip;
     }
 
@@ -420,7 +467,8 @@ class ZCRMUser
      * decimalSeparator
      * @return String
      */
-    public function getDecimalSeparator(){
+    public function getDecimalSeparator()
+    {
         return $this->decimalSeparator;
     }
 
@@ -428,7 +476,8 @@ class ZCRMUser
      * decimalSeparator
      * @param String $decimalSeparator
      */
-    public function setDecimalSeparator($decimalSeparator){
+    public function setDecimalSeparator($decimalSeparator)
+    {
         $this->decimalSeparator = $decimalSeparator;
     }
 
@@ -436,7 +485,8 @@ class ZCRMUser
      * website
      * @return String
      */
-    public function getWebsite(){
+    public function getWebsite()
+    {
         return $this->website;
     }
 
@@ -444,7 +494,8 @@ class ZCRMUser
      * website
      * @param String $website
      */
-    public function setWebsite($website){
+    public function setWebsite($website)
+    {
         $this->website = $website;
     }
 
@@ -452,7 +503,8 @@ class ZCRMUser
      * timeFormat
      * @return String
      */
-    public function getTimeFormat(){
+    public function getTimeFormat()
+    {
         return $this->timeFormat;
     }
 
@@ -460,7 +512,8 @@ class ZCRMUser
      * timeFormat
      * @param String $timeFormat
      */
-    public function setTimeFormat($timeFormat){
+    public function setTimeFormat($timeFormat)
+    {
         $this->timeFormat = $timeFormat;
     }
 
@@ -468,7 +521,8 @@ class ZCRMUser
      * profile
      * @return ZCRMProfile
      */
-    public function getProfile(){
+    public function getProfile()
+    {
         return $this->profile;
     }
 
@@ -476,7 +530,8 @@ class ZCRMUser
      * profile
      * @param ZCRMProfile $profile
      */
-    public function setProfile($profile){
+    public function setProfile($profile)
+    {
         $this->profile = $profile;
     }
 
@@ -484,7 +539,8 @@ class ZCRMUser
      * mobile
      * @return Long
      */
-    public function getMobile(){
+    public function getMobile()
+    {
         return $this->mobile;
     }
 
@@ -492,7 +548,8 @@ class ZCRMUser
      * mobile
      * @param Long $mobile
      */
-    public function setMobile($mobile){
+    public function setMobile($mobile)
+    {
         $this->mobile = $mobile;
     }
 
@@ -500,7 +557,8 @@ class ZCRMUser
      * lastName
      * @return String
      */
-    public function getLastName(){
+    public function getLastName()
+    {
         return $this->lastName;
     }
 
@@ -508,7 +566,8 @@ class ZCRMUser
      * lastName
      * @param String $lastName
      */
-    public function setLastName($lastName){
+    public function setLastName($lastName)
+    {
         $this->lastName = $lastName;
     }
 
@@ -516,7 +575,8 @@ class ZCRMUser
      * timeZone
      * @return String
      */
-    public function getTimeZone(){
+    public function getTimeZone()
+    {
         return $this->timeZone;
     }
 
@@ -524,7 +584,8 @@ class ZCRMUser
      * timeZone
      * @param String $timeZone
      */
-    public function setTimeZone($timeZone){
+    public function setTimeZone($timeZone)
+    {
         $this->timeZone = $timeZone;
     }
 
@@ -532,7 +593,8 @@ class ZCRMUser
      * zuid
      * @return Long
      */
-    public function getZuid(){
+    public function getZuid()
+    {
         return $this->zuid;
     }
 
@@ -540,7 +602,8 @@ class ZCRMUser
      * zuid
      * @param Long $zuid
      */
-    public function setZuid($zuid){
+    public function setZuid($zuid)
+    {
         $this->zuid = $zuid;
     }
 
@@ -548,7 +611,8 @@ class ZCRMUser
      * isConfirm
      * @return boolean
      */
-    public function isConfirm(){
+    public function isConfirm()
+    {
         return $this->isConfirm;
     }
 
@@ -556,7 +620,8 @@ class ZCRMUser
      * isConfirm
      * @param boolean $isConfirm
      */
-    public function setConfirm($isConfirm){
+    public function setConfirm($isConfirm)
+    {
         $this->isConfirm = $isConfirm;
     }
 
@@ -564,7 +629,8 @@ class ZCRMUser
      * fullName
      * @return String
      */
-    public function getFullName(){
+    public function getFullName()
+    {
         return $this->fullName;
     }
 
@@ -572,7 +638,8 @@ class ZCRMUser
      * fullName
      * @param String $fullName
      */
-    public function setFullName($fullName){
+    public function setFullName($fullName)
+    {
         $this->fullName = $fullName;
     }
 
@@ -580,7 +647,8 @@ class ZCRMUser
      * phone
      * @return Long
      */
-    public function getPhone(){
+    public function getPhone()
+    {
         return $this->phone;
     }
 
@@ -588,7 +656,8 @@ class ZCRMUser
      * phone
      * @param Long $phone
      */
-    public function setPhone($phone){
+    public function setPhone($phone)
+    {
         $this->phone = $phone;
     }
 
@@ -596,7 +665,8 @@ class ZCRMUser
      * dob
      * @return String
      */
-    public function getDob(){
+    public function getDob()
+    {
         return $this->dob;
     }
 
@@ -604,7 +674,8 @@ class ZCRMUser
      * dob
      * @param String $dob
      */
-    public function setDob($dob){
+    public function setDob($dob)
+    {
         $this->dob = $dob;
     }
 
@@ -612,7 +683,8 @@ class ZCRMUser
      * dateFormat
      * @return String
      */
-    public function getDateFormat(){
+    public function getDateFormat()
+    {
         return $this->dateFormat;
     }
 
@@ -620,7 +692,8 @@ class ZCRMUser
      * dateFormat
      * @param String $dateFormat
      */
-    public function setDateFormat($dateFormat){
+    public function setDateFormat($dateFormat)
+    {
         $this->dateFormat = $dateFormat;
     }
 
@@ -628,7 +701,8 @@ class ZCRMUser
      * status
      * @return String
      */
-    public function getStatus(){
+    public function getStatus()
+    {
         return $this->status;
     }
 
@@ -636,7 +710,8 @@ class ZCRMUser
      * status
      * @param String $status
      */
-    public function setStatus($status){
+    public function setStatus($status)
+    {
         $this->status = $status;
     }
 
@@ -645,7 +720,8 @@ class ZCRMUser
      * createdBy
      * @return Object
      */
-    public function getCreatedBy(){
+    public function getCreatedBy()
+    {
         return $this->createdBy;
     }
 
@@ -654,7 +730,8 @@ class ZCRMUser
      * @param Object $createdBy
      * @return ZCRMUser
      */
-    public function setCreatedBy($createdBy){
+    public function setCreatedBy($createdBy)
+    {
         $this->createdBy = $createdBy;
     }
 
@@ -662,7 +739,8 @@ class ZCRMUser
      * modifiedBy
      * @return Object
      */
-    public function getModifiedBy(){
+    public function getModifiedBy()
+    {
         return $this->modifiedBy;
     }
 
@@ -671,7 +749,8 @@ class ZCRMUser
      * @param Object $modifiedBy
      * @return ZCRMUser
      */
-    public function setModifiedBy($modifiedBy){
+    public function setModifiedBy($modifiedBy)
+    {
         $this->modifiedBy = $modifiedBy;
         return $this;
     }
@@ -680,7 +759,8 @@ class ZCRMUser
      * territories
      * @return Array
      */
-    public function getTerritories(){
+    public function getTerritories()
+    {
         return $this->territories;
     }
 
@@ -689,7 +769,8 @@ class ZCRMUser
      * @param Array $territories
      * @return ZCRMUser
      */
-    public function setTerritories($territories){
+    public function setTerritories($territories)
+    {
         $this->territories = $territories;
     }
 
@@ -697,7 +778,8 @@ class ZCRMUser
      * reportingTo
      * @return Object
      */
-    public function getReportingTo(){
+    public function getReportingTo()
+    {
         return $this->reportingTo;
     }
 
@@ -706,7 +788,8 @@ class ZCRMUser
      * @param Object $reportingTo
      * @return ZCRMUser
      */
-    public function setReportingTo($reportingTo){
+    public function setReportingTo($reportingTo)
+    {
         $this->reportingTo = $reportingTo;
     }
 
@@ -714,7 +797,8 @@ class ZCRMUser
      * isOnline
      * @return Boolean
      */
-    public function getIsOnline(){
+    public function getIsOnline()
+    {
         return $this->isOnline;
     }
 
@@ -723,47 +807,53 @@ class ZCRMUser
      * @param Boolean $isOnline
      * @return ZCRMUser
      */
-    public function setIsOnline($isOnline){
+    public function setIsOnline($isOnline)
+    {
         $this->isOnline = $isOnline;
     }
     
-    public function geCurrency(){
-    	return $this->currency;
+    public function geCurrency()
+    {
+        return $this->currency;
     }
     
-    public function setCurrency($currency){
-    	$this->currency = $currency;
+    public function setCurrency($currency)
+    {
+        $this->currency = $currency;
     }
     /**
      * createdTime
      * @return String
      */
-    public function getCreatedTime(){
-    	return $this->createdTime;
+    public function getCreatedTime()
+    {
+        return $this->createdTime;
     }
     
     /**
      * createdTime
      * @param String $createdTime
      */
-    public function setCreatedTime($createdTime){
-    	$this->createdTime = $createdTime;
+    public function setCreatedTime($createdTime)
+    {
+        $this->createdTime = $createdTime;
     }
     
     /**
      * modifiedTime
      * @return String
      */
-    public function getModifiedTime(){
-    	return $this->modifiedTime;
+    public function getModifiedTime()
+    {
+        return $this->modifiedTime;
     }
     
     /**
      * modifiedTime
      * @param String $modifiedTime
      */
-    public function setModifiedTime($modifiedTime){
-    	$this->modifiedTime = $modifiedTime;
+    public function setModifiedTime($modifiedTime)
+    {
+        $this->modifiedTime = $modifiedTime;
     }
 }
-?>

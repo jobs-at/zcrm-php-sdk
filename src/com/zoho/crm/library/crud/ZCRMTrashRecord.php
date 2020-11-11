@@ -1,28 +1,31 @@
 <?php
 
+namespace Jobs\ZohoSDK\com\zoho\crm\library\crud;
+
 class ZCRMTrashRecord
 {
-	private $entityId = null;
-	private $displayName;
-	private $type;
-	private $deletedTime;
-	private $createdBy;
-	private $deletedBy;
+    private $entityId = null;
+    private $displayName;
+    private $type;
+    private $deletedTime;
+    private $createdBy;
+    private $deletedBy;
 
-	private function __construct($type,$id)
-	{
-		$this->type=$type;
-		$this->entityId=$id;
-	}
-	public static function getInstance($type,$id=null)
-	{
-		return new ZCRMTrashRecord($type,$id);
-	}
+    private function __construct($type, $id)
+    {
+        $this->type=$type;
+        $this->entityId=$id;
+    }
+    public static function getInstance($type, $id=null)
+    {
+        return new ZCRMTrashRecord($type, $id);
+    }
     /**
      * entityId
      * @return Long
      */
-    public function getEntityId(){
+    public function getEntityId()
+    {
         return $this->entityId;
     }
 
@@ -30,7 +33,8 @@ class ZCRMTrashRecord
      * entityId
      * @param Long $entityId
      */
-    public function setEntityId($entityId){
+    public function setEntityId($entityId)
+    {
         $this->entityId = $entityId;
     }
 
@@ -38,7 +42,8 @@ class ZCRMTrashRecord
      * displayName
      * @return String
      */
-    public function getDisplayName(){
+    public function getDisplayName()
+    {
         return $this->displayName;
     }
 
@@ -46,7 +51,8 @@ class ZCRMTrashRecord
      * displayName
      * @param String $displayName
      */
-    public function setDisplayName($displayName){
+    public function setDisplayName($displayName)
+    {
         $this->displayName = $displayName;
     }
 
@@ -54,7 +60,8 @@ class ZCRMTrashRecord
      * type
      * @return String
      */
-    public function getType(){
+    public function getType()
+    {
         return $this->type;
     }
 
@@ -62,7 +69,8 @@ class ZCRMTrashRecord
      * type
      * @param String $type
      */
-    public function setType($type){
+    public function setType($type)
+    {
         $this->type = $type;
     }
 
@@ -70,7 +78,8 @@ class ZCRMTrashRecord
      * deletedTime
      * @return DATETIME
      */
-    public function getDeletedTime(){
+    public function getDeletedTime()
+    {
         return $this->deletedTime;
     }
 
@@ -78,7 +87,8 @@ class ZCRMTrashRecord
      * deletedTime
      * @param DATETIME $deletedTime
      */
-    public function setDeletedTime($deletedTime){
+    public function setDeletedTime($deletedTime)
+    {
         $this->deletedTime = $deletedTime;
     }
 
@@ -86,7 +96,8 @@ class ZCRMTrashRecord
      * createdBy
      * @return ZCRMUser
      */
-    public function getCreatedBy(){
+    public function getCreatedBy()
+    {
         return $this->createdBy;
     }
 
@@ -94,7 +105,8 @@ class ZCRMTrashRecord
      * createdBy
      * @param ZCRMUser $createdBy
      */
-    public function setCreatedBy($createdBy){
+    public function setCreatedBy($createdBy)
+    {
         $this->createdBy = $createdBy;
     }
 
@@ -102,7 +114,8 @@ class ZCRMTrashRecord
      * deletedBy
      * @return ZCRMUser
      */
-    public function getDeletedBy(){
+    public function getDeletedBy()
+    {
         return $this->deletedBy;
     }
 
@@ -110,9 +123,8 @@ class ZCRMTrashRecord
      * deletedBy
      * @param ZCRMUser $deletedBy
      */
-    public function setDeletedBy($deletedBy){
+    public function setDeletedBy($deletedBy)
+    {
         $this->deletedBy = $deletedBy;
     }
-
 }
-?>

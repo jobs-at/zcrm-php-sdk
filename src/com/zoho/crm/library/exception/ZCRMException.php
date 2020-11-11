@@ -1,4 +1,8 @@
 <?php
+namespace Jobs\ZohoSDK\com\zoho\crm\library\exception;
+
+use Exception;
+
 class ZCRMException extends Exception
 {
 	protected $message = 'Unknown exception';     // Exception message

@@ -1,83 +1,86 @@
 <?php
 
+namespace Jobs\ZohoSDK\com\zoho\crm\library\setup\users;
+
 class ZCRMProfile
 {
-	private $id=null;
-	private $name=null;
-	private $default=null;
-	private $createdTime=null;
-	private $modifiedTime=null;
-	private $modifiedBy=null;
-	private $description=null;
-	private $createdBy=null;
-	private $category=null;
-	private $permissionList=array();
-	private $sectionsList=array();
-	
-	private function __construct($id,$profileName)
-	{
-		$this->id=$id;
-		$this->name=$profileName;
-	}
-	
-	public static function getInstance($id,$profileName)
-	{
-		return new ZCRMProfile($id,$profileName);
-	}
-	/**
-	 * set Profile Id
-	 * @param profile $id
-	 */
-	public function setId($id)
-	{
-		$this->id=$id;
-	}
-	/**
-	 * Get Profile Id
-	 * @return profile $id
-	 */
-	public function getId()
-	{
-		return $this->id;
-	}
-	/**
-	 * set Profile Name
-	 * @param profile Name
-	 */
-	public function setName($name)
-	{
-		$this->name=$name;
-	}
-	/**
-	 * Get Profile Name
-	 * @return profile name
-	 */
-	public function getName()
-	{
-		return $this->name;
-	}
-	/**
-	 * get to know whether Profile is default profile or not
-	 */
-	public function isDefaultProfile()
-	{
-		return $this->default;
-	}
-	/**
-	 * set Profile as default profile
-	 * @param boolean
-	 */
-	public function setDefaultProfile($defaultProfile)
-	{
-		$this->default=$defaultProfile;
-	}
-	
+    private $id=null;
+    private $name=null;
+    private $default=null;
+    private $createdTime=null;
+    private $modifiedTime=null;
+    private $modifiedBy=null;
+    private $description=null;
+    private $createdBy=null;
+    private $category=null;
+    private $permissionList=[];
+    private $sectionsList=[];
+    
+    private function __construct($id, $profileName)
+    {
+        $this->id=$id;
+        $this->name=$profileName;
+    }
+    
+    public static function getInstance($id, $profileName)
+    {
+        return new ZCRMProfile($id, $profileName);
+    }
+    /**
+     * set Profile Id
+     * @param profile $id
+     */
+    public function setId($id)
+    {
+        $this->id=$id;
+    }
+    /**
+     * Get Profile Id
+     * @return profile $id
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+    /**
+     * set Profile Name
+     * @param profile Name
+     */
+    public function setName($name)
+    {
+        $this->name=$name;
+    }
+    /**
+     * Get Profile Name
+     * @return profile name
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+    /**
+     * get to know whether Profile is default profile or not
+     */
+    public function isDefaultProfile()
+    {
+        return $this->default;
+    }
+    /**
+     * set Profile as default profile
+     * @param boolean
+     */
+    public function setDefaultProfile($defaultProfile)
+    {
+        $this->default=$defaultProfile;
+    }
+    
 
     /**
      * Get the createdTime of the profile
      * @return String
      */
-    public function getCreatedTime(){
+    public function getCreatedTime()
+    {
         return $this->createdTime;
     }
 
@@ -85,7 +88,8 @@ class ZCRMProfile
      * Set the createdTime of the profile
      * @param String $createdTime
      */
-    public function setCreatedTime($createdTime){
+    public function setCreatedTime($createdTime)
+    {
         $this->createdTime = $createdTime;
     }
 
@@ -93,7 +97,8 @@ class ZCRMProfile
      * Get the modifiedTime of the profile
      * @return String
      */
-    public function getModifiedTime(){
+    public function getModifiedTime()
+    {
         return $this->modifiedTime;
     }
 
@@ -101,7 +106,8 @@ class ZCRMProfile
      * Set the modifiedTime of the profile
      * @param String $modifiedTime
      */
-    public function setModifiedTime($modifiedTime){
+    public function setModifiedTime($modifiedTime)
+    {
         $this->modifiedTime = $modifiedTime;
     }
 
@@ -109,7 +115,8 @@ class ZCRMProfile
      * Get the modifiedBy of the profile
      * @return ZCRMUser
      */
-    public function getModifiedBy(){
+    public function getModifiedBy()
+    {
         return $this->modifiedBy;
     }
 
@@ -117,7 +124,8 @@ class ZCRMProfile
      * Set the modifiedBy of the profile
      * @param ZCRMUser $modifiedBy
      */
-    public function setModifiedBy($modifiedBy){
+    public function setModifiedBy($modifiedBy)
+    {
         $this->modifiedBy = $modifiedBy;
     }
 
@@ -125,7 +133,8 @@ class ZCRMProfile
      * Get the description of the profile
      * @return String
      */
-    public function getDescription(){
+    public function getDescription()
+    {
         return $this->description;
     }
 
@@ -133,7 +142,8 @@ class ZCRMProfile
      * Set the description for the profile
      * @param String $description
      */
-    public function setDescription($description){
+    public function setDescription($description)
+    {
         $this->description = $description;
     }
 
@@ -141,7 +151,8 @@ class ZCRMProfile
      * Get the createdBy of the profile
      * @return ZCRMUser
      */
-    public function getCreatedBy(){
+    public function getCreatedBy()
+    {
         return $this->createdBy;
     }
 
@@ -149,7 +160,8 @@ class ZCRMProfile
      * Set the createdBy of the profile
      * @param ZCRMUser $createdBy
      */
-    public function setCreatedBy($createdBy){
+    public function setCreatedBy($createdBy)
+    {
         $this->createdBy = $createdBy;
     }
 
@@ -157,7 +169,8 @@ class ZCRMProfile
      * Get the category of the profile
      * @return String
      */
-    public function getCategory(){
+    public function getCategory()
+    {
         return $this->category;
     }
 
@@ -165,7 +178,8 @@ class ZCRMProfile
      * Set the category of the profile
      * @param String $category
      */
-    public function setCategory($category){
+    public function setCategory($category)
+    {
         $this->category = $category;
     }
 
@@ -174,7 +188,8 @@ class ZCRMProfile
      * permissionList
      * @return array of ZCRMPermission instances
      */
-    public function getPermissionList(){
+    public function getPermissionList()
+    {
         return $this->permissionList;
     }
 
@@ -182,25 +197,26 @@ class ZCRMProfile
      * permissionList
      * @param array $permissionList
      */
-    public function addPermission($permissionIns){
-        array_push($this->permissionList,$permissionIns);
+    public function addPermission($permissionIns)
+    {
+        array_push($this->permissionList, $permissionIns);
     }
     
     /**
      * sectionList
      * @return array of ZCRMProfileSection instances
      */
-    public function getSectionsList(){
-    	return $this->sectionsList;
+    public function getSectionsList()
+    {
+        return $this->sectionsList;
     }
     
     /**
      * sectionList
      * @param array $sectionList
      */
-    public function addSection($sectionIns){
-    	array_push($this->sectionsList,$sectionIns);
+    public function addSection($sectionIns)
+    {
+        array_push($this->sectionsList, $sectionIns);
     }
-
 }
-?>

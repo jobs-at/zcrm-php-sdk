@@ -1,6 +1,8 @@
 <?php
-require_once 'Logger.php';
-require_once realpath(dirname(__FILE__)."/../common/APIConstants.php");
+
+namespace Jobs\ZohoSDK\com\zoho\crm\library\exception;
+
+use Jobs\ZohoSDK\com\zoho\crm\library\common\APIConstants;
 
 class APIExceptionHandler
 {

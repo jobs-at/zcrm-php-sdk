@@ -1,10 +1,13 @@
 <?php
 
-require_once 'ZohoOAuth.php';
-require_once realpath(dirname(__FILE__) . "/../common/OAuthLogger.php");
-require_once realpath(dirname(__FILE__) . "/../common/ZohoOAuthHTTPConnector.php");
-require_once realpath(dirname(__FILE__) . "/../common/ZohoOAuthConstants.php");
-require_once realpath(dirname(__FILE__) . "/../common/ZohoOAuthTokens.php");
+namespace Jobs\ZohoSDK\com\zoho\oauth\client;
+
+use Exception;
+use Jobs\ZohoSDK\Test\zoho\crm\library\api\OAuthLogger;
+use Jobs\ZohoSDK\Test\zoho\crm\library\api\ZohoOAuthConstants;
+use Jobs\ZohoSDK\Test\zoho\crm\library\api\ZohoOAuthException;
+use Jobs\ZohoSDK\Test\zoho\crm\library\api\ZohoOAuthHTTPConnector;
+use Jobs\ZohoSDK\Test\zoho\crm\library\api\ZohoOAuthTokens;
 
 class ZohoOAuthClient
 {
@@ -36,16 +39,16 @@ class ZohoOAuthClient
         try {
             $tokens = $persistence->getOAuthTokens($userEmailId);
         } catch (ZohoOAuthException $ex) {
-            OAuthLogger::severe("Exception while retrieving tokens from persistence - " . $ex);
+            OAuthLogger::severe('Exception while retrieving tokens from persistence - ' . $ex);
             throw $ex;
         } catch (Exception $ex) {
-            OAuthLogger::severe("Exception while retrieving tokens from persistence - " . $ex);
+            OAuthLogger::severe('Exception while retrieving tokens from persistence - ' . $ex);
             throw new ZohoOAuthException($ex);
         }
         try {
             return $tokens->getAccessToken();
         } catch (ZohoOAuthException $ex) {
-            OAuthLogger::info("Access Token has expired. Hence refreshing.");
+            OAuthLogger::info('Access Token has expired. Hence refreshing.');
             $tokens = self::refreshAccessToken($tokens->getRefreshToken(), $userEmailId);
             return $tokens->getAccessToken();
         }
@@ -54,7 +57,7 @@ class ZohoOAuthClient
     public function generateAccessToken($grantToken)
     {
         if ($grantToken == null) {
-            throw new ZohoOAuthException("Grant Token is not provided.");
+            throw new ZohoOAuthException('Grant Token is not provided.');
         }
         try {
             $conn = self::getZohoConnector(ZohoOAuth::getTokenURL());
@@ -68,7 +71,7 @@ class ZohoOAuthClient
                 ZohoOAuth::getPersistenceHandlerInstance()->saveOAuthData($tokens);
                 return $tokens;
             } else {
-                throw new ZohoOAuthException("Exception while fetching access token from grant token - " . $resp);
+                throw new ZohoOAuthException('Exception while fetching access token from grant token - ' . $resp);
             }
         } catch (ZohoOAuthException $ex) {
             throw new ZohoOAuthException($ex);
@@ -83,7 +86,7 @@ class ZohoOAuthClient
     public function refreshAccessToken($refreshToken, $userEmailId)
     {
         if ($refreshToken == null) {
-            throw new ZohoOAuthException("Refresh token is not provided.");
+            throw new ZohoOAuthException('Refresh token is not provided.');
         }
         try {
             $conn = self::getZohoConnector(ZohoOAuth::getRefreshTokenURL());
@@ -98,7 +101,7 @@ class ZohoOAuthClient
                 ZohoOAuth::getPersistenceHandlerInstance()->saveOAuthData($tokens);
                 return $tokens;
             } else {
-                throw new ZohoOAuthException("Exception while fetching access token from refresh token - " . $response);
+                throw new ZohoOAuthException('Exception while fetching access token from refresh token - ' . $response);
             }
         } catch (ZohoOAuthException $ex) {
             throw new ZohoOAuthException($ex);
@@ -167,7 +170,4 @@ class ZohoOAuthClient
 
         return $jsonResponse;
     }
-
 }
-
-?>

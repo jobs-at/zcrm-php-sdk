@@ -1,4 +1,6 @@
 <?php
+namespace Jobs\ZohoSDK\com\zoho\crm\library\exception;
+
 require_once realpath(dirname(__FILE__) . "/../common/ZCRMConfigUtil.php");
 
 class Logger

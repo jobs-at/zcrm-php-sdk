@@ -1,29 +1,32 @@
 <?php
 
+namespace Jobs\ZohoSDK\com\zoho\crm\library\crud;
+
 class ZCRMProfileCategory
 {
-	private $name;
-	private $module;
-	private $displayLabel;
-	private $permissionIds=array();
-	
-	private function __construct($name)
-	{
-		$this->name=$name;
-	}
-	
-	public static function getInstance($name)
-	{
-		return new ZCRMProfileCategory($name);
-	}
-	
-	
+    private $name;
+    private $module;
+    private $displayLabel;
+    private $permissionIds=[];
+    
+    private function __construct($name)
+    {
+        $this->name=$name;
+    }
+    
+    public static function getInstance($name)
+    {
+        return new ZCRMProfileCategory($name);
+    }
+    
+    
 
     /**
      * name
      * @return string
      */
-    public function getName(){
+    public function getName()
+    {
         return $this->name;
     }
 
@@ -31,7 +34,8 @@ class ZCRMProfileCategory
      * name
      * @param string $name
      */
-    public function setName($name){
+    public function setName($name)
+    {
         $this->name = $name;
     }
 
@@ -39,7 +43,8 @@ class ZCRMProfileCategory
      * module
      * @return string
      */
-    public function getModule(){
+    public function getModule()
+    {
         return $this->module;
     }
 
@@ -47,7 +52,8 @@ class ZCRMProfileCategory
      * module
      * @param string $module
      */
-    public function setModule($module){
+    public function setModule($module)
+    {
         $this->module = $module;
     }
 
@@ -55,7 +61,8 @@ class ZCRMProfileCategory
      * displayLabel
      * @return string
      */
-    public function getDisplayLabel(){
+    public function getDisplayLabel()
+    {
         return $this->displayLabel;
     }
 
@@ -63,7 +70,8 @@ class ZCRMProfileCategory
      * displayLabel
      * @param string $displayLabel
      */
-    public function setDisplayLabel($displayLabel){
+    public function setDisplayLabel($displayLabel)
+    {
         $this->displayLabel = $displayLabel;
     }
 
@@ -71,7 +79,8 @@ class ZCRMProfileCategory
      * permissionIds
      * @return array
      */
-    public function getPermissionIds(){
+    public function getPermissionIds()
+    {
         return $this->permissionIds;
     }
 
@@ -79,9 +88,8 @@ class ZCRMProfileCategory
      * permissionIds
      * @param array $permissionIds
      */
-    public function setPermissionIds($permissionIds){
+    public function setPermissionIds($permissionIds)
+    {
         $this->permissionIds = $permissionIds;
     }
-
 }
-?>
