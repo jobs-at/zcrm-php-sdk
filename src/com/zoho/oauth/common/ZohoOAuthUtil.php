@@ -4,8 +4,6 @@ namespace Jobs\ZohoSDK\com\zoho\oauth\common;
 
 use Exception;
 
-require_once 'OAuthLogger.php';
-
 class ZohoOAuthUtil
 {
     public static function getFileContentAsMap($fileHandler)
