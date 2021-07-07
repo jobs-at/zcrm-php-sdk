@@ -1,26 +1,29 @@
 <?php
 
+namespace Jobs\ZohoSDK\com\zoho\crm\library\crud;
+
 class ZCRMPriceBookPricing
 {
-	private $id=null;
-	private $toRange=null;
-	private $fromRange=null;
-	private $discount=null;
-	
-	private function __construct($id)
-	{
-		$this->id=$id;
-	}
-	public static function getInstance($id)
-	{
-		return new ZCRMPriceBookPricing($id);
-	}
+    private $id=null;
+    private $toRange=null;
+    private $fromRange=null;
+    private $discount=null;
+    
+    private function __construct($id)
+    {
+        $this->id=$id;
+    }
+    public static function getInstance($id)
+    {
+        return new ZCRMPriceBookPricing($id);
+    }
 
     /**
      * id
      * @return Long
      */
-    public function getId(){
+    public function getId()
+    {
         return $this->id;
     }
 
@@ -28,7 +31,8 @@ class ZCRMPriceBookPricing
      * id
      * @param Long $id
      */
-    public function setId($id){
+    public function setId($id)
+    {
         $this->id = $id;
     }
 
@@ -36,7 +40,8 @@ class ZCRMPriceBookPricing
      * toRange
      * @return Double
      */
-    public function getToRange(){
+    public function getToRange()
+    {
         return $this->toRange;
     }
 
@@ -44,7 +49,8 @@ class ZCRMPriceBookPricing
      * toRange
      * @param Double $toRange
      */
-    public function setToRange($toRange){
+    public function setToRange($toRange)
+    {
         $this->toRange = $toRange;
     }
 
@@ -52,7 +58,8 @@ class ZCRMPriceBookPricing
      * fromRange
      * @return Double
      */
-    public function getFromRange(){
+    public function getFromRange()
+    {
         return $this->fromRange;
     }
 
@@ -60,7 +67,8 @@ class ZCRMPriceBookPricing
      * fromRange
      * @param Double $fromRange
      */
-    public function setFromRange($fromRange){
+    public function setFromRange($fromRange)
+    {
         $this->fromRange = $fromRange;
     }
 
@@ -68,7 +76,8 @@ class ZCRMPriceBookPricing
      * discount
      * @return Double
      */
-    public function getDiscount(){
+    public function getDiscount()
+    {
         return $this->discount;
     }
 
@@ -76,9 +85,8 @@ class ZCRMPriceBookPricing
      * discount
      * @param Double $discount
      */
-    public function setDiscount($discount){
+    public function setDiscount($discount)
+    {
         $this->discount = $discount;
     }
-
 }
-?>

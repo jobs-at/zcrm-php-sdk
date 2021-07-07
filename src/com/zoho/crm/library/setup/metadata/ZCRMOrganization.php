@@ -1,5 +1,8 @@
 <?php
-require_once realpath(dirname(__FILE__).'/../../api/handler/OrganizationAPIHandler.php');
+
+namespace Jobs\ZohoSDK\com\zoho\crm\library\setup\metadata;
+
+use Jobs\ZohoSDK\com\zoho\crm\library\api\handler\OrganizationAPIHandler;
 
 /**
  * Purpose of this method is to call the Organization level APIs like users, profiles, roles, ..etc 

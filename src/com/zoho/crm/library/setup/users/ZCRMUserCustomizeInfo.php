@@ -1,29 +1,31 @@
 <?php
 
+namespace Jobs\ZohoSDK\com\zoho\crm\library\setup\users;
+
 class ZCRMUserCustomizeInfo
 {
-	private $notesDesc=null;
-	private $isToShowRightPanel=null;
-	private $isBcView=null;
-	private $isToShowHome=null;
-	private $isToShowDetailView=null;
-	private $unpinRecentItem=null;
-	
-	private function __construct()
-	{
-		
-	}
-	
-	public static function getInstance()
-	{
-		return new ZCRMUserCustomizeInfo();
-	}
+    private $notesDesc=null;
+    private $isToShowRightPanel=null;
+    private $isBcView=null;
+    private $isToShowHome=null;
+    private $isToShowDetailView=null;
+    private $unpinRecentItem=null;
+    
+    private function __construct()
+    {
+    }
+    
+    public static function getInstance()
+    {
+        return new ZCRMUserCustomizeInfo();
+    }
 
     /**
      * notesDesc
      * @return String
      */
-    public function getNotesDesc(){
+    public function getNotesDesc()
+    {
         return $this->notesDesc;
     }
 
@@ -32,7 +34,8 @@ class ZCRMUserCustomizeInfo
      * @param String $notesDesc
      * @return ZCRMUserCustomizeInfo
      */
-    public function setNotesDesc($notesDesc){
+    public function setNotesDesc($notesDesc)
+    {
         $this->notesDesc = $notesDesc;
     }
 
@@ -40,7 +43,8 @@ class ZCRMUserCustomizeInfo
      * isToShowRightPanel
      * @return boolean
      */
-    public function isToShowRightPanel(){
+    public function isToShowRightPanel()
+    {
         return $this->isToShowRightPanel;
     }
 
@@ -48,7 +52,8 @@ class ZCRMUserCustomizeInfo
      * isToShowRightPanel
      * @param boolean $isToShowRightPanel
      */
-    public function setIsToShowRightPanel($isToShowRightPanel){
+    public function setIsToShowRightPanel($isToShowRightPanel)
+    {
         $this->isToShowRightPanel = $isToShowRightPanel;
     }
 
@@ -56,7 +61,8 @@ class ZCRMUserCustomizeInfo
      * isBcView
      * @return boolean
      */
-    public function isBcView(){
+    public function isBcView()
+    {
         return $this->isBcView;
     }
 
@@ -64,7 +70,8 @@ class ZCRMUserCustomizeInfo
      * isBcView
      * @param boolean $isBcView
      */
-    public function setBcView($isBcView){
+    public function setBcView($isBcView)
+    {
         $this->isBcView = $isBcView;
     }
 
@@ -72,7 +79,8 @@ class ZCRMUserCustomizeInfo
      * isToShowHome
      * @return boolean
      */
-    public function isToShowHome(){
+    public function isToShowHome()
+    {
         return $this->isToShowHome;
     }
 
@@ -80,7 +88,8 @@ class ZCRMUserCustomizeInfo
      * isToShowHome
      * @param boolean $isToShowHome
      */
-    public function setIsToShowHome($isToShowHome){
+    public function setIsToShowHome($isToShowHome)
+    {
         $this->isToShowHome = $isToShowHome;
     }
 
@@ -88,7 +97,8 @@ class ZCRMUserCustomizeInfo
      * isToShowDetailView
      * @return boolean
      */
-    public function isToShowDetailView(){
+    public function isToShowDetailView()
+    {
         return $this->isToShowDetailView;
     }
 
@@ -96,7 +106,8 @@ class ZCRMUserCustomizeInfo
      * isToShowDetailView
      * @param boolean $isToShowDetailView
      */
-    public function setIsToShowDetailView($isToShowDetailView){
+    public function setIsToShowDetailView($isToShowDetailView)
+    {
         $this->isToShowDetailView = $isToShowDetailView;
     }
 
@@ -104,7 +115,8 @@ class ZCRMUserCustomizeInfo
      * unpinRecentItem
      * @return boolean
      */
-    public function getUnpinRecentItem(){
+    public function getUnpinRecentItem()
+    {
         return $this->unpinRecentItem;
     }
 
@@ -112,9 +124,8 @@ class ZCRMUserCustomizeInfo
      * unpinRecentItem
      * @param boolean $unpinRecentItem
      */
-    public function setUnpinRecentItem($unpinRecentItem){
+    public function setUnpinRecentItem($unpinRecentItem)
+    {
         $this->unpinRecentItem = $unpinRecentItem;
     }
-
 }
-?>

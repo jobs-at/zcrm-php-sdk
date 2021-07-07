@@ -1,30 +1,33 @@
 <?php
 
+namespace Jobs\ZohoSDK\com\zoho\crm\library\crud;
+
 class ZCRMEventParticipant
 {
-	private $email=null;
-	private $name=null;
-	private $id=null;
-	private $type=null;
-	private $isInvited=null;
-	private $status=null;
-	
-	private function __construct($type,$id)
-	{
-		$this->type=$type;
-		$this->id=$id;
-	}
-	
-	public static function getInstance($type,$id)
-	{
-		return new ZCRMEventParticipant($type,$id);
-	}
+    private $email=null;
+    private $name=null;
+    private $id=null;
+    private $type=null;
+    private $isInvited=null;
+    private $status=null;
+    
+    private function __construct($type, $id)
+    {
+        $this->type=$type;
+        $this->id=$id;
+    }
+    
+    public static function getInstance($type, $id)
+    {
+        return new ZCRMEventParticipant($type, $id);
+    }
 
     /**
      * email
      * @return String
      */
-    public function getEmail(){
+    public function getEmail()
+    {
         return $this->email;
     }
 
@@ -32,7 +35,8 @@ class ZCRMEventParticipant
      * email
      * @param String $email
      */
-    public function setEmail($email){
+    public function setEmail($email)
+    {
         $this->email = $email;
     }
 
@@ -40,7 +44,8 @@ class ZCRMEventParticipant
      * name
      * @return String
      */
-    public function getName(){
+    public function getName()
+    {
         return $this->name;
     }
 
@@ -48,7 +53,8 @@ class ZCRMEventParticipant
      * name
      * @param String $name
      */
-    public function setName($name){
+    public function setName($name)
+    {
         $this->name = $name;
     }
 
@@ -56,7 +62,8 @@ class ZCRMEventParticipant
      * id
      * @return Long
      */
-    public function getId(){
+    public function getId()
+    {
         return $this->id;
     }
 
@@ -65,7 +72,8 @@ class ZCRMEventParticipant
      * @param Long $id
      * @return ZCRMEventParticipant
      */
-    public function setId($id){
+    public function setId($id)
+    {
         $this->id = $id;
     }
 
@@ -73,7 +81,8 @@ class ZCRMEventParticipant
      * type
      * @return String
      */
-    public function getType(){
+    public function getType()
+    {
         return $this->type;
     }
 
@@ -81,7 +90,8 @@ class ZCRMEventParticipant
      * type
      * @param String $type
      */
-    public function setType($type){
+    public function setType($type)
+    {
         $this->type = $type;
     }
 
@@ -89,7 +99,8 @@ class ZCRMEventParticipant
      * isInvited
      * @return boolean
      */
-    public function isInvited(){
+    public function isInvited()
+    {
         return $this->isInvited;
     }
 
@@ -97,7 +108,8 @@ class ZCRMEventParticipant
      * isInvited
      * @param boolean $isInvited
      */
-    public function setInvited($isInvited){
+    public function setInvited($isInvited)
+    {
         $this->isInvited = $isInvited;
     }
 
@@ -105,7 +117,8 @@ class ZCRMEventParticipant
      * status
      * @return String
      */
-    public function getStatus(){
+    public function getStatus()
+    {
         return $this->status;
     }
 
@@ -113,9 +126,8 @@ class ZCRMEventParticipant
      * status
      * @param String $status
      */
-    public function setStatus($status){
+    public function setStatus($status)
+    {
         $this->status = $status;
     }
-
 }
-?>

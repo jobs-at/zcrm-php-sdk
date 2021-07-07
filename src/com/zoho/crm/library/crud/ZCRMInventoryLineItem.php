@@ -1,4 +1,7 @@
 <?php
+
+namespace Jobs\ZohoSDK\com\zoho\crm\library\crud;
+
 require_once 'ZCRMRecord.php';
 
 /**
@@ -8,42 +11,40 @@ require_once 'ZCRMRecord.php';
  */
 class ZCRMInventoryLineItem
 {
-	private $id=null;
-	private $product=null;
-	private $listPrice=null;
-	private $quantity=null;
-	private $description=null;
-	private $total=null;
-	private $discount=null;
-	private $discountPercentage=null;
-	private $totalAfterDiscount=null;
-	private $taxAmount=null;
-	private $netTotal=null;
-	private $deleteFlag = false;
-	private $lineTax = array();
-	private function __construct($param)
-	{
-		if($param instanceof ZCRMRecord)
-		{
-			$this->product=$param;
-		}
-		else
-		{
-			$this->id=$param;
-		}
-	}
-	
-	public static function getInstance($param)
-	{
-		return new ZCRMInventoryLineItem($param);
-	}
-	
+    private $id=null;
+    private $product=null;
+    private $listPrice=null;
+    private $quantity=null;
+    private $description=null;
+    private $total=null;
+    private $discount=null;
+    private $discountPercentage=null;
+    private $totalAfterDiscount=null;
+    private $taxAmount=null;
+    private $netTotal=null;
+    private $deleteFlag = false;
+    private $lineTax = [];
+    private function __construct($param)
+    {
+        if ($param instanceof ZCRMRecord) {
+            $this->product=$param;
+        } else {
+            $this->id=$param;
+        }
+    }
+    
+    public static function getInstance($param)
+    {
+        return new ZCRMInventoryLineItem($param);
+    }
+    
 
     /**
      * id
      * @return Long
      */
-    public function getId(){
+    public function getId()
+    {
         return $this->id;
     }
 
@@ -51,7 +52,8 @@ class ZCRMInventoryLineItem
      * id
      * @param Long $id
      */
-    public function setId($id){
+    public function setId($id)
+    {
         $this->id = $id;
     }
 
@@ -59,7 +61,8 @@ class ZCRMInventoryLineItem
      * product
      * @return ZCRMRecord
      */
-    public function getProduct(){
+    public function getProduct()
+    {
         return $this->product;
     }
 
@@ -67,7 +70,8 @@ class ZCRMInventoryLineItem
      * product
      * @param ZCRMRecord $product
      */
-    public function setProduct($product){
+    public function setProduct($product)
+    {
         $this->product = $product;
     }
 
@@ -75,7 +79,8 @@ class ZCRMInventoryLineItem
      * listPrice
      * @return Double
      */
-    public function getListPrice(){
+    public function getListPrice()
+    {
         return $this->listPrice;
     }
 
@@ -83,7 +88,8 @@ class ZCRMInventoryLineItem
      * listPrice
      * @param Double $listPrice
      */
-    public function setListPrice($listPrice){
+    public function setListPrice($listPrice)
+    {
         $this->listPrice = $listPrice;
     }
 
@@ -91,7 +97,8 @@ class ZCRMInventoryLineItem
      * quantity
      * @return Double
      */
-    public function getQuantity(){
+    public function getQuantity()
+    {
         return $this->quantity;
     }
 
@@ -99,7 +106,8 @@ class ZCRMInventoryLineItem
      * quantity
      * @param Double $quantity
      */
-    public function setQuantity($quantity){
+    public function setQuantity($quantity)
+    {
         $this->quantity = $quantity;
     }
 
@@ -107,7 +115,8 @@ class ZCRMInventoryLineItem
      * description
      * @return String
      */
-    public function getDescription(){
+    public function getDescription()
+    {
         return $this->description;
     }
 
@@ -115,7 +124,8 @@ class ZCRMInventoryLineItem
      * description
      * @param String $description
      */
-    public function setDescription($description){
+    public function setDescription($description)
+    {
         $this->description = $description;
     }
 
@@ -123,7 +133,8 @@ class ZCRMInventoryLineItem
      * total
      * @return Double
      */
-    public function getTotal(){
+    public function getTotal()
+    {
         return $this->total;
     }
 
@@ -131,7 +142,8 @@ class ZCRMInventoryLineItem
      * total
      * @param Double $total
      */
-    public function setTotal($total){
+    public function setTotal($total)
+    {
         $this->total = $total;
     }
 
@@ -139,7 +151,8 @@ class ZCRMInventoryLineItem
      * discount
      * @return Double
      */
-    public function getDiscount(){
+    public function getDiscount()
+    {
         return $this->discount;
     }
 
@@ -147,7 +160,8 @@ class ZCRMInventoryLineItem
      * discount
      * @param Double $discount
      */
-    public function setDiscount($discount){
+    public function setDiscount($discount)
+    {
         $this->discount = $discount;
     }
 
@@ -155,7 +169,8 @@ class ZCRMInventoryLineItem
      * discountPercentage
      * @return Double
      */
-    public function getDiscountPercentage(){
+    public function getDiscountPercentage()
+    {
         return $this->discountPercentage;
     }
 
@@ -163,7 +178,8 @@ class ZCRMInventoryLineItem
      * discountPercentage
      * @param Double $discountPercentage
      */
-    public function setDiscountPercentage($discountPercentage){
+    public function setDiscountPercentage($discountPercentage)
+    {
         $this->discountPercentage = $discountPercentage;
     }
 
@@ -171,7 +187,8 @@ class ZCRMInventoryLineItem
      * totalAfterDiscount
      * @return Double
      */
-    public function getTotalAfterDiscount(){
+    public function getTotalAfterDiscount()
+    {
         return $this->totalAfterDiscount;
     }
 
@@ -179,7 +196,8 @@ class ZCRMInventoryLineItem
      * totalAfterDiscount
      * @param Double $totalAfterDiscount
      */
-    public function setTotalAfterDiscount($totalAfterDiscount){
+    public function setTotalAfterDiscount($totalAfterDiscount)
+    {
         $this->totalAfterDiscount = $totalAfterDiscount;
     }
 
@@ -187,7 +205,8 @@ class ZCRMInventoryLineItem
      * taxAmount
      * @return Double
      */
-    public function getTaxAmount(){
+    public function getTaxAmount()
+    {
         return $this->taxAmount;
     }
 
@@ -195,7 +214,8 @@ class ZCRMInventoryLineItem
      * taxAmount
      * @param Double $taxAmount
      */
-    public function setTaxAmount($taxAmount){
+    public function setTaxAmount($taxAmount)
+    {
         $this->taxAmount = $taxAmount;
     }
 
@@ -203,7 +223,8 @@ class ZCRMInventoryLineItem
      * netTotal
      * @return Double
      */
-    public function getNetTotal(){
+    public function getNetTotal()
+    {
         return $this->netTotal;
     }
 
@@ -211,7 +232,8 @@ class ZCRMInventoryLineItem
      * netTotal
      * @param Double $netTotal
      */
-    public function setNetTotal($netTotal){
+    public function setNetTotal($netTotal)
+    {
         $this->netTotal = $netTotal;
     }
 
@@ -219,7 +241,8 @@ class ZCRMInventoryLineItem
      * deleteFlag
      * @return Boolean
      */
-    public function getDeleteFlag(){
+    public function getDeleteFlag()
+    {
         return (boolean)$this->deleteFlag;
     }
 
@@ -227,7 +250,8 @@ class ZCRMInventoryLineItem
      * deleteFlag
      * @param Boolean $deleteFlag
      */
-    public function setDeleteFlag($deleteFlag){
+    public function setDeleteFlag($deleteFlag)
+    {
         $this->deleteFlag = $deleteFlag;
     }
 
@@ -235,7 +259,8 @@ class ZCRMInventoryLineItem
      * lineTax
      * @return Array of ZCRMTax
      */
-    public function getLineTax(){
+    public function getLineTax()
+    {
         return $this->lineTax;
     }
 
@@ -243,9 +268,8 @@ class ZCRMInventoryLineItem
      * lineTax
      * @param Array of ZCRMTax $lineTax
      */
-    public function addLineTax($lineTax){
-    	array_push($this->lineTax,$lineTax);
+    public function addLineTax($lineTax)
+    {
+        array_push($this->lineTax, $lineTax);
     }
-
 }
-?>

@@ -1,25 +1,27 @@
 <?php
 
+namespace Jobs\ZohoSDK\com\zoho\crm\library\crud;
+
 class ZCRMCustomViewCategory
 {
-	private $displayValue=null;
-	private $actualValue=null;
-	
-	private function __construct()
-	{
-		
-	}
-	
-	public static function getInstance()
-	{
-		return new ZCRMCustomViewCategory();
-	}
+    private $displayValue=null;
+    private $actualValue=null;
+    
+    private function __construct()
+    {
+    }
+    
+    public static function getInstance()
+    {
+        return new ZCRMCustomViewCategory();
+    }
 
     /**
      * get the displayValue of the custom view category
      * @return String
      */
-    public function getDisplayValue(){
+    public function getDisplayValue()
+    {
         return $this->displayValue;
     }
 
@@ -27,7 +29,8 @@ class ZCRMCustomViewCategory
      * set the displayValue for the custom view category
      * @param String $displayValue
      */
-    public function setDisplayValue($displayValue){
+    public function setDisplayValue($displayValue)
+    {
         $this->displayValue = $displayValue;
     }
 
@@ -35,7 +38,8 @@ class ZCRMCustomViewCategory
      * get the actual Value of the custom view category
      * @return String
      */
-    public function getActualValue(){
+    public function getActualValue()
+    {
         return $this->actualValue;
     }
 
@@ -43,9 +47,8 @@ class ZCRMCustomViewCategory
      * set the actual Value for the custom view category
      * @param String $actualValue
      */
-    public function setActualValue($actualValue){
+    public function setActualValue($actualValue)
+    {
         $this->actualValue = $actualValue;
     }
-
 }
-?>

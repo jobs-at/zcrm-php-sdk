@@ -1,40 +1,43 @@
 <?php
 
+namespace Jobs\ZohoSDK\com\zoho\crm\library\crud;
+
 class ZCRMNote
 {
-	private $id=null;
-	private $title=null;
-	private $content=null;
-	
-	private $parentRecord=null;
-	private $owner=null;
-	private $createdBy=null;
-	private $createdTime=null;
-	private $modifiedBy=null;
-	private $modifiedTime=null;
-	private $attachments=null;
-	private $size=null;
-	private $voiceNote=null;
-	private $parentModule=null;
-	private $parentName=null;
-	private $parentId=null;
-	
-	private function __construct($parentRecord,$noteId)
-	{
-		$this->parentRecord=$parentRecord;
-		$this->id=$noteId;
-	}
-	
-	public static function getInstance($parentRecord,$noteId=null)
-	{
-		return new ZCRMNote($parentRecord,$noteId);
-	}
+    private $id=null;
+    private $title=null;
+    private $content=null;
+    
+    private $parentRecord=null;
+    private $owner=null;
+    private $createdBy=null;
+    private $createdTime=null;
+    private $modifiedBy=null;
+    private $modifiedTime=null;
+    private $attachments=null;
+    private $size=null;
+    private $voiceNote=null;
+    private $parentModule=null;
+    private $parentName=null;
+    private $parentId=null;
+    
+    private function __construct($parentRecord, $noteId)
+    {
+        $this->parentRecord=$parentRecord;
+        $this->id=$noteId;
+    }
+    
+    public static function getInstance($parentRecord, $noteId=null)
+    {
+        return new ZCRMNote($parentRecord, $noteId);
+    }
 
     /**
      * id
      * @return Long
      */
-    public function getId(){
+    public function getId()
+    {
         return $this->id;
     }
 
@@ -42,7 +45,8 @@ class ZCRMNote
      * id
      * @param Long $id
      */
-    public function setId($id){
+    public function setId($id)
+    {
         $this->id = $id;
     }
 
@@ -50,7 +54,8 @@ class ZCRMNote
      * title
      * @return String
      */
-    public function getTitle(){
+    public function getTitle()
+    {
         return $this->title;
     }
 
@@ -58,7 +63,8 @@ class ZCRMNote
      * title
      * @param String $title
      */
-    public function setTitle($title){
+    public function setTitle($title)
+    {
         $this->title = $title;
     }
 
@@ -66,7 +72,8 @@ class ZCRMNote
      * content
      * @return String
      */
-    public function getContent(){
+    public function getContent()
+    {
         return $this->content;
     }
 
@@ -74,7 +81,8 @@ class ZCRMNote
      * content
      * @param String $content
      */
-    public function setContent($content){
+    public function setContent($content)
+    {
         $this->content = $content;
     }
 
@@ -82,7 +90,8 @@ class ZCRMNote
      * parentRecord
      * @return ZCRMRecord
      */
-    public function getParentRecord(){
+    public function getParentRecord()
+    {
         return $this->parentRecord;
     }
 
@@ -90,7 +99,8 @@ class ZCRMNote
      * parentRecord
      * @param ZCRMRecord $parentRecord
      */
-    public function setParentRecord($parentRecord){
+    public function setParentRecord($parentRecord)
+    {
         $this->parentRecord = $parentRecord;
     }
 
@@ -98,7 +108,8 @@ class ZCRMNote
      * owner
      * @return ZCRMUser
      */
-    public function getOwner(){
+    public function getOwner()
+    {
         return $this->owner;
     }
 
@@ -106,7 +117,8 @@ class ZCRMNote
      * owner
      * @param ZCRMUser $owner
      */
-    public function setOwner($owner){
+    public function setOwner($owner)
+    {
         $this->owner = $owner;
     }
 
@@ -114,7 +126,8 @@ class ZCRMNote
      * createdBy
      * @return ZCRMUser
      */
-    public function getCreatedBy(){
+    public function getCreatedBy()
+    {
         return $this->createdBy;
     }
 
@@ -122,7 +135,8 @@ class ZCRMNote
      * createdBy
      * @param ZCRMUser $createdBy
      */
-    public function setCreatedBy($createdBy){
+    public function setCreatedBy($createdBy)
+    {
         $this->createdBy = $createdBy;
     }
 
@@ -130,7 +144,8 @@ class ZCRMNote
      * createdTime
      * @return DateTime String
      */
-    public function getCreatedTime(){
+    public function getCreatedTime()
+    {
         return $this->createdTime;
     }
 
@@ -138,7 +153,8 @@ class ZCRMNote
      * createdTime
      * @param DateTime String $createdTime
      */
-    public function setCreatedTime($createdTime){
+    public function setCreatedTime($createdTime)
+    {
         $this->createdTime = $createdTime;
     }
 
@@ -146,7 +162,8 @@ class ZCRMNote
      * modifiedBy
      * @return ZCRMUser
      */
-    public function getModifiedBy(){
+    public function getModifiedBy()
+    {
         return $this->modifiedBy;
     }
 
@@ -154,7 +171,8 @@ class ZCRMNote
      * modifiedBy
      * @param ZCRMUser $modifiedBy
      */
-    public function setModifiedBy($modifiedBy){
+    public function setModifiedBy($modifiedBy)
+    {
         $this->modifiedBy = $modifiedBy;
     }
 
@@ -162,7 +180,8 @@ class ZCRMNote
      * modifiedTime
      * @return DateTime String
      */
-    public function getModifiedTime(){
+    public function getModifiedTime()
+    {
         return $this->modifiedTime;
     }
 
@@ -170,7 +189,8 @@ class ZCRMNote
      * modifiedTime
      * @param DateTime String $modifiedTime
      */
-    public function setModifiedTime($modifiedTime){
+    public function setModifiedTime($modifiedTime)
+    {
         $this->modifiedTime = $modifiedTime;
     }
 
@@ -179,7 +199,8 @@ class ZCRMNote
      * attachments
      * @return Array of ZCRMAttachment instance
      */
-    public function getAttachments(){
+    public function getAttachments()
+    {
         return $this->attachments;
     }
 
@@ -187,7 +208,8 @@ class ZCRMNote
      * attachments
      * @param Array of ZCRMAttachment instances $attachments
      */
-    public function setAttachments($attachments){
+    public function setAttachments($attachments)
+    {
         $this->attachments = $attachments;
     }
 
@@ -196,7 +218,8 @@ class ZCRMNote
      * size
      * @return int
      */
-    public function getSize(){
+    public function getSize()
+    {
         return $this->size;
     }
 
@@ -204,7 +227,8 @@ class ZCRMNote
      * size
      * @param int $size
      */
-    public function setSize($size){
+    public function setSize($size)
+    {
         $this->size = $size;
     }
 
@@ -212,7 +236,8 @@ class ZCRMNote
      * voiceNote
      * @return boolean
      */
-    public function isVoiceNote(){
+    public function isVoiceNote()
+    {
         return $this->voiceNote;
     }
 
@@ -220,7 +245,8 @@ class ZCRMNote
      * voiceNote
      * @param boolean $voiceNote
      */
-    public function setVoiceNote($voiceNote){
+    public function setVoiceNote($voiceNote)
+    {
         $this->voiceNote = $voiceNote;
     }
 
@@ -229,7 +255,8 @@ class ZCRMNote
      * parentModule
      * @return String
      */
-    public function getParentModule(){
+    public function getParentModule()
+    {
         return $this->parentModule;
     }
 
@@ -237,7 +264,8 @@ class ZCRMNote
      * parentModule
      * @param String $parentModule
      */
-    public function setParentModule($parentModule){
+    public function setParentModule($parentModule)
+    {
         $this->parentModule = $parentModule;
     }
 
@@ -246,7 +274,8 @@ class ZCRMNote
      * parentName
      * @return String
      */
-    public function getParentName(){
+    public function getParentName()
+    {
         return $this->parentName;
     }
 
@@ -254,7 +283,8 @@ class ZCRMNote
      * parentName
      * @param String $parentName
      */
-    public function setParentName($parentName){
+    public function setParentName($parentName)
+    {
         $this->parentName = $parentName;
     }
 
@@ -262,7 +292,8 @@ class ZCRMNote
      * parentId
      * @return Long
      */
-    public function getParentId(){
+    public function getParentId()
+    {
         return $this->parentId;
     }
 
@@ -270,9 +301,8 @@ class ZCRMNote
      * parentId
      * @param Long $parentId
      */
-    public function setParentId($parentId){
+    public function setParentId($parentId)
+    {
         $this->parentId = $parentId;
     }
-
 }
-?>

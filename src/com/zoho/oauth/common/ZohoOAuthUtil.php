@@ -1,5 +1,8 @@
 <?php
-require_once 'OAuthLogger.php';
+
+namespace Jobs\ZohoSDK\com\zoho\oauth\common;
+
+use Exception;
 
 class ZohoOAuthUtil
 {
@@ -9,17 +12,15 @@ class ZohoOAuthUtil
         try {
             while (!feof($fileHandler)) {
                 $line = fgets($fileHandler);
-                $lineAfterSplit = explode("=", $line);
-                if (strpos($lineAfterSplit[0], "#") === false && count($lineAfterSplit) > 1) {
+                $lineAfterSplit = explode('=', $line);
+                if (strpos($lineAfterSplit[0], '#') === false && count($lineAfterSplit) > 1) {
                     $reponseMap[trim($lineAfterSplit[0])] = trim($lineAfterSplit[1]);
                 }
             }
             fclose($fileHandler);
         } catch (Exception $ex) {
-            OAuthLogger::warn("Exception occured while converting file content as map (file::ZohoOAuthUtil.php)");
+            OAuthLogger::warn('Exception occured while converting file content as map (file::ZohoOAuthUtil.php)');
         }
         return $reponseMap;
     }
 }
-
-?>

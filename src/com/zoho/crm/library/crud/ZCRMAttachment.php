@@ -1,39 +1,45 @@
 <?php
-require_once 'ZCRMModuleRelation.php';
+
+namespace Jobs\ZohoSDK\com\zoho\crm\library\crud;
+
+use DateTime;
+use Jobs\ZohoSDK\com\zoho\crm\library\setup\users\ZCRMUser;
+
 class ZCRMAttachment
 {
-	private $id=null;
-	private $fileName=null;
-	private $fileType=null;
-	private $size=null;
-	private $owner=null;
-	private $createdBy=null;
-	private $createdTime=null;
-	private $modifiedBy=null;
-	private $modifiedTime=null;
-	
-	private $parentRecord=null;
-	private $parentModule=null;
-	private $attachmentType=null;
-	private $parentName=null;
-	private $parentId=null;
-	
-	private function __construct($parentRecord,$attachmentId)
-	{
-		$this->parentRecord=$parentRecord;
-		$this->id=$attachmentId;
-	}
-	
-	public static function getInstance($parentRecord,$attachmentId=null)
-	{
-		return new ZCRMAttachment($parentRecord,$attachmentId);
-	}
+    private $id=null;
+    private $fileName=null;
+    private $fileType=null;
+    private $size=null;
+    private $owner=null;
+    private $createdBy=null;
+    private $createdTime=null;
+    private $modifiedBy=null;
+    private $modifiedTime=null;
+    
+    private $parentRecord=null;
+    private $parentModule=null;
+    private $attachmentType=null;
+    private $parentName=null;
+    private $parentId=null;
+    
+    private function __construct($parentRecord, $attachmentId)
+    {
+        $this->parentRecord=$parentRecord;
+        $this->id=$attachmentId;
+    }
+    
+    public static function getInstance($parentRecord, $attachmentId=null)
+    {
+        return new ZCRMAttachment($parentRecord, $attachmentId);
+    }
 
     /**
      * id
      * @return Long
      */
-    public function getId(){
+    public function getId()
+    {
         return $this->id;
     }
 
@@ -41,7 +47,8 @@ class ZCRMAttachment
      * id
      * @param Long $id
      */
-    public function setId($id){
+    public function setId($id)
+    {
         $this->id = $id;
     }
 
@@ -49,7 +56,8 @@ class ZCRMAttachment
      * fileName
      * @return String
      */
-    public function getFileName(){
+    public function getFileName()
+    {
         return $this->fileName;
     }
 
@@ -57,7 +65,8 @@ class ZCRMAttachment
      * fileName
      * @param String $fileName
      */
-    public function setFileName($fileName){
+    public function setFileName($fileName)
+    {
         $this->fileName = $fileName;
     }
 
@@ -65,7 +74,8 @@ class ZCRMAttachment
      * fileType
      * @return String
      */
-    public function getFileType(){
+    public function getFileType()
+    {
         return $this->fileType;
     }
 
@@ -73,7 +83,8 @@ class ZCRMAttachment
      * fileType
      * @param String $fileType
      */
-    public function setFileType($fileType){
+    public function setFileType($fileType)
+    {
         $this->fileType = $fileType;
     }
 
@@ -81,7 +92,8 @@ class ZCRMAttachment
      * size
      * @return int
      */
-    public function getSize(){
+    public function getSize()
+    {
         return $this->size;
     }
 
@@ -89,7 +101,8 @@ class ZCRMAttachment
      * size
      * @param int $size
      */
-    public function setSize($size){
+    public function setSize($size)
+    {
         $this->size = $size;
     }
 
@@ -97,7 +110,8 @@ class ZCRMAttachment
      * parentRecord
      * @return ZCRMRecord
      */
-    public function getParentRecord(){
+    public function getParentRecord()
+    {
         return $this->parentRecord;
     }
 
@@ -105,7 +119,8 @@ class ZCRMAttachment
      * parentRecord
      * @param ZCRMRecord $parentRecord
      */
-    public function setParentRecord($parentRecord){
+    public function setParentRecord($parentRecord)
+    {
         $this->parentRecord = $parentRecord;
     }
 
@@ -113,7 +128,8 @@ class ZCRMAttachment
      * owner
      * @return ZCRMUser
      */
-    public function getOwner(){
+    public function getOwner()
+    {
         return $this->owner;
     }
 
@@ -121,7 +137,8 @@ class ZCRMAttachment
      * owner
      * @param ZCRMUser $owner
      */
-    public function setOwner($owner){
+    public function setOwner($owner)
+    {
         $this->owner = $owner;
     }
 
@@ -129,7 +146,8 @@ class ZCRMAttachment
      * createdBy
      * @return ZCRMUser
      */
-    public function getCreatedBy(){
+    public function getCreatedBy()
+    {
         return $this->createdBy;
     }
 
@@ -137,7 +155,8 @@ class ZCRMAttachment
      * createdBy
      * @param ZCRMUser $createdBy
      */
-    public function setCreatedBy($createdBy){
+    public function setCreatedBy($createdBy)
+    {
         $this->createdBy = $createdBy;
     }
 
@@ -145,7 +164,8 @@ class ZCRMAttachment
      * createdTime
      * @return DateTime  String
      */
-    public function getCreatedTime(){
+    public function getCreatedTime()
+    {
         return $this->createdTime;
     }
 
@@ -153,7 +173,8 @@ class ZCRMAttachment
      * createdTime
      * @param DateTime  String $createdTime
      */
-    public function setCreatedTime($createdTime){
+    public function setCreatedTime($createdTime)
+    {
         $this->createdTime = $createdTime;
     }
 
@@ -161,7 +182,8 @@ class ZCRMAttachment
      * modifiedBy
      * @return ZCRMUser
      */
-    public function getModifiedBy(){
+    public function getModifiedBy()
+    {
         return $this->modifiedBy;
     }
 
@@ -169,7 +191,8 @@ class ZCRMAttachment
      * modifiedBy
      * @param ZCRMUser $modifiedBy
      */
-    public function setModifiedBy($modifiedBy){
+    public function setModifiedBy($modifiedBy)
+    {
         $this->modifiedBy = $modifiedBy;
     }
 
@@ -177,7 +200,8 @@ class ZCRMAttachment
      * modifiedTime
      * @return DateTime  String
      */
-    public function getModifiedTime(){
+    public function getModifiedTime()
+    {
         return $this->modifiedTime;
     }
 
@@ -185,7 +209,8 @@ class ZCRMAttachment
      * modifiedTime
      * @param DateTime  String $modifiedTime
      */
-    public function setModifiedTime($modifiedTime){
+    public function setModifiedTime($modifiedTime)
+    {
         $this->modifiedTime = $modifiedTime;
     }
 
@@ -194,7 +219,8 @@ class ZCRMAttachment
      * parentModule
      * @return String
      */
-    public function getParentModule(){
+    public function getParentModule()
+    {
         return $this->parentModule;
     }
 
@@ -202,7 +228,8 @@ class ZCRMAttachment
      * parentModule
      * @param String $parentModule
      */
-    public function setParentModule($parentModule){
+    public function setParentModule($parentModule)
+    {
         $this->parentModule = $parentModule;
     }
 
@@ -211,7 +238,8 @@ class ZCRMAttachment
      * attachmentType
      * @return String
      */
-    public function getAttachmentType(){
+    public function getAttachmentType()
+    {
         return $this->attachmentType;
     }
 
@@ -219,7 +247,8 @@ class ZCRMAttachment
      * attachmentType
      * @param String $attachmentType
      */
-    public function setAttachmentType($attachmentType){
+    public function setAttachmentType($attachmentType)
+    {
         $this->attachmentType = $attachmentType;
     }
     
@@ -227,38 +256,40 @@ class ZCRMAttachment
      * parentName
      * @return String
      */
-    public function getParentName(){
-    	return $this->parentName;
+    public function getParentName()
+    {
+        return $this->parentName;
     }
     
     /**
      * parentName
      * @param String $parentName
      */
-    public function setParentName($parentName){
-    	$this->parentName = $parentName;
+    public function setParentName($parentName)
+    {
+        $this->parentName = $parentName;
     }
     
     /**
      * parentId
      * @return Long
      */
-    public function getParentId(){
-    	return $this->parentId;
+    public function getParentId()
+    {
+        return $this->parentId;
     }
     
     /**
      * parentId
      * @param Long $parentId
      */
-    public function setParentId($parentId){
-    	$this->parentId = $parentId;
+    public function setParentId($parentId)
+    {
+        $this->parentId = $parentId;
     }
     
     public function downloadFile()
     {
-    	return ZCRMModuleRelation::getInstance($this->parentRecord, "Attachments")->downloadAttachment($this->id);
+        return ZCRMModuleRelation::getInstance($this->parentRecord, 'Attachments')->downloadAttachment($this->id);
     }
-
 }
-?>

@@ -1,11 +1,14 @@
 <?php
-require_once realpath(dirname(__FILE__) . "/../common/ZCRMConfigUtil.php");
-require_once realpath(dirname(__FILE__) . "/../common/ZohoHTTPConnector.php");
-require_once realpath(dirname(__FILE__) . "/../common/APIConstants.php");
-require_once realpath(dirname(__FILE__) . "/../exception/ZCRMException.php");
-require_once 'response/APIResponse.php';
-require_once 'response/BulkAPIResponse.php';
-require_once realpath(dirname(__FILE__) . "/response/FileAPIResponse.php");
+
+namespace Jobs\ZohoSDK\com\zoho\crm\library\api;
+
+use Jobs\ZohoSDK\com\zoho\crm\library\common\APIConstants;
+use Jobs\ZohoSDK\com\zoho\crm\library\common\ZCRMConfigUtil;
+use Jobs\ZohoSDK\com\zoho\crm\library\common\ZohoHTTPConnector;
+use Jobs\ZohoSDK\com\zoho\crm\library\api\response\APIResponse;
+use Jobs\ZohoSDK\com\zoho\crm\library\api\response\BulkAPIResponse;
+use Jobs\ZohoSDK\com\zoho\crm\library\api\response\FileAPIResponse;
+use Jobs\ZohoSDK\com\zoho\crm\library\exception\ZCRMException;
 
 /**
  * This class is to construct the API requests and initiate the request
@@ -27,8 +30,8 @@ class APIRequest
     {
         self::constructAPIUrl();
         self::setUrl($this->url . $apiHandler->getUrlPath());
-        if (substr($apiHandler->getUrlPath(), 0, 4) !== "http") {
-            self::setUrl("https://" . $this->url);
+        if (substr($apiHandler->getUrlPath(), 0, 4) !== 'http') {
+            self::setUrl('https://' . $this->url);
         }
         self::setRequestParams($apiHandler->getRequestParams());
         self::setRequestHeaders($apiHandler->getRequestHeaders());
@@ -50,7 +53,7 @@ class APIRequest
     {
         $hitSandbox = ZCRMConfigUtil::getConfigValue('sandbox');
         $baseUrl = $hitSandbox ? str_replace('www', 'sandbox', ZCRMConfigUtil::getAPIBaseUrl()) : ZCRMConfigUtil::getAPIBaseUrl();
-        $this->url = $baseUrl . "/crm/" . ZCRMConfigUtil::getAPIVersion() . "/";
+        $this->url = $baseUrl . '/crm/' . ZCRMConfigUtil::getAPIVersion() . '/';
         $this->url = str_replace(PHP_EOL, '', $this->url);
     }
 
@@ -67,7 +70,8 @@ class APIRequest
 
     /**
      * initiate the request and get the API response
-     * @return Instance of APIResponse
+     * @return APIResponse
+     * @throws ZCRMException
      */
     public function getAPIResponse()
     {
@@ -91,7 +95,8 @@ class APIRequest
 
     /**
      * initiate the request and get the API response
-     * @return instance of BulkAPIResponse
+     * @return BulkAPIResponse
+     * @throws ZCRMException
      */
     public function getBulkAPIResponse()
     {
@@ -201,7 +206,7 @@ class APIRequest
 
     /**
      * Get the request parameters
-     * @return Array
+     * @return array
      */
     public function getRequestParams()
     {
@@ -210,7 +215,7 @@ class APIRequest
 
     /**
      * Set the request parameters
-     * @param Array $requestParams
+     * @param array $requestParams
      */
     public function setRequestParams($requestParams)
     {
@@ -219,7 +224,7 @@ class APIRequest
 
     /**
      * Get the request headers
-     * @return Array
+     * @return array
      */
     public function getRequestHeaders()
     {
@@ -228,7 +233,7 @@ class APIRequest
 
     /**
      * Set the request headers
-     * @param Array $requestHeaders
+     * @param array $requestHeaders
      */
     public function setRequestHeaders($requestHeaders)
     {
@@ -288,7 +293,4 @@ class APIRequest
     {
         $this->apiKey = $apiKey;
     }
-
 }
-
-?>

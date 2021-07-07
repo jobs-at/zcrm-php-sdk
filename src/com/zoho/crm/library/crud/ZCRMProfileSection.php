@@ -1,25 +1,28 @@
 <?php
 
+namespace Jobs\ZohoSDK\com\zoho\crm\library\crud;
+
 class ZCRMProfileSection
 {
-	private $name;
-	private $categories=array();
-	private function __construct($name)
-	{
-		$this->name=$name;
-	}
-	public static function getInstance($name)
-	{
-		return new ZCRMProfileSection($name);
-	}
-	
-	
+    private $name;
+    private $categories=[];
+    private function __construct($name)
+    {
+        $this->name=$name;
+    }
+    public static function getInstance($name)
+    {
+        return new ZCRMProfileSection($name);
+    }
+    
+    
 
     /**
      * name
      * @return array
      */
-    public function getName(){
+    public function getName()
+    {
         return $this->name;
     }
 
@@ -27,7 +30,8 @@ class ZCRMProfileSection
      * name
      * @param array $name
      */
-    public function setName($name){
+    public function setName($name)
+    {
         $this->name = $name;
     }
 
@@ -35,7 +39,8 @@ class ZCRMProfileSection
      * categories
      * @return array of ZCRMProfileCategory instances
      */
-    public function getCategories(){
+    public function getCategories()
+    {
         return $this->categories;
     }
 
@@ -43,9 +48,8 @@ class ZCRMProfileSection
      * categories
      * @param array $categories
      */
-    public function addCategory($categoryIns){
+    public function addCategory($categoryIns)
+    {
         array_push($this->categories, $categoryIns);
     }
-
 }
-?>
